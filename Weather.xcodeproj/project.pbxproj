@@ -9,20 +9,21 @@
 /* Begin PBXBuildFile section */
 		2DC13DF625E84A2200B9C44C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC13DF525E84A2200B9C44C /* AppDelegate.swift */; };
 		2DC13DF825E84A2200B9C44C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC13DF725E84A2200B9C44C /* SceneDelegate.swift */; };
-		2DC13DFA25E84A2200B9C44C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC13DF925E84A2200B9C44C /* ViewController.swift */; };
+		2DC13DFA25E84A2200B9C44C /* CityForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC13DF925E84A2200B9C44C /* CityForecastViewController.swift */; };
 		2DC13DFD25E84A2200B9C44C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DC13DFB25E84A2200B9C44C /* Main.storyboard */; };
 		2DC13DFF25E84A2300B9C44C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DC13DFE25E84A2300B9C44C /* Assets.xcassets */; };
 		2DC13E0225E84A2300B9C44C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DC13E0025E84A2300B9C44C /* LaunchScreen.storyboard */; };
 		2DF3BFB825EE81FF000534E3 /* TodayForecastHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF3BFB725EE81FF000534E3 /* TodayForecastHeader.swift */; };
 		2DF3BFBA25EE8204000534E3 /* TodayForecastHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DF3BFB925EE8204000534E3 /* TodayForecastHeader.xib */; };
 		2DF3BFBD25EE8ED3000534E3 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF3BFBC25EE8ED3000534E3 /* UIViewExtension.swift */; };
+		2DF3BFBF25EEC3FD000534E3 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF3BFBE25EEC3FD000534E3 /* UIColorExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2DC13DF225E84A2200B9C44C /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DC13DF525E84A2200B9C44C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2DC13DF725E84A2200B9C44C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		2DC13DF925E84A2200B9C44C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2DC13DF925E84A2200B9C44C /* CityForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityForecastViewController.swift; sourceTree = "<group>"; };
 		2DC13DFC25E84A2200B9C44C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2DC13DFE25E84A2300B9C44C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2DC13E0125E84A2300B9C44C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -30,6 +31,7 @@
 		2DF3BFB725EE81FF000534E3 /* TodayForecastHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayForecastHeader.swift; sourceTree = "<group>"; };
 		2DF3BFB925EE8204000534E3 /* TodayForecastHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodayForecastHeader.xib; sourceTree = "<group>"; };
 		2DF3BFBC25EE8ED3000534E3 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		2DF3BFBE25EEC3FD000534E3 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,7 +66,7 @@
 			children = (
 				2DF3BFBB25EE8EBF000534E3 /* Extensions */,
 				2DF3BFB525EE81AE000534E3 /* Views */,
-				2DF3BFB425EE7FDD000534E3 /* VIewControllers */,
+				2DF3BFB425EE7FDD000534E3 /* ViewControllers */,
 				2DF3BFB325EE7FCC000534E3 /* Storyboards */,
 				2DC13DF525E84A2200B9C44C /* AppDelegate.swift */,
 				2DC13DF725E84A2200B9C44C /* SceneDelegate.swift */,
@@ -83,12 +85,12 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
-		2DF3BFB425EE7FDD000534E3 /* VIewControllers */ = {
+		2DF3BFB425EE7FDD000534E3 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				2DC13DF925E84A2200B9C44C /* ViewController.swift */,
+				2DC13DF925E84A2200B9C44C /* CityForecastViewController.swift */,
 			);
-			path = VIewControllers;
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		2DF3BFB525EE81AE000534E3 /* Views */ = {
@@ -112,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				2DF3BFBC25EE8ED3000534E3 /* UIViewExtension.swift */,
+				2DF3BFBE25EEC3FD000534E3 /* UIColorExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -189,10 +192,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DF3BFBD25EE8ED3000534E3 /* UIViewExtension.swift in Sources */,
-				2DC13DFA25E84A2200B9C44C /* ViewController.swift in Sources */,
+				2DC13DFA25E84A2200B9C44C /* CityForecastViewController.swift in Sources */,
 				2DF3BFB825EE81FF000534E3 /* TodayForecastHeader.swift in Sources */,
 				2DC13DF625E84A2200B9C44C /* AppDelegate.swift in Sources */,
 				2DC13DF825E84A2200B9C44C /* SceneDelegate.swift in Sources */,
+				2DF3BFBF25EEC3FD000534E3 /* UIColorExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

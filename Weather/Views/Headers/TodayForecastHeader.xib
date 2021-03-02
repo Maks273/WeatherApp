@@ -18,24 +18,24 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="1bp-Ke-jIF">
-                    <rect key="frame" x="0.0" y="352" width="625" height="30"/>
+                    <rect key="frame" x="10" y="352" width="605" height="30"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZmS-Zk-SQg">
-                            <rect key="frame" x="0.0" y="0.0" width="208.33333333333334" height="30"/>
+                            <rect key="frame" x="0.0" y="0.0" width="201.66666666666666" height="30"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
                             <state key="normal" title="Today">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y0u-BJ-Uds">
-                            <rect key="frame" x="208.33333333333331" y="0.0" width="208.33333333333331" height="30"/>
+                            <rect key="frame" x="201.66666666666669" y="0.0" width="201.66666666666669" height="30"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
                             <state key="normal" title="Tomorrow">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FxV-rv-lzi">
-                            <rect key="frame" x="416.66666666666669" y="0.0" width="208.33333333333331" height="30"/>
+                            <rect key="frame" x="403.33333333333331" y="0.0" width="201.66666666666669" height="30"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <inset key="titleEdgeInsets" minX="-30" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -53,7 +53,7 @@
                     <rect key="frame" x="0.0" y="382" width="625" height="12"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5ZB-Ds-oeN">
-                            <rect key="frame" x="99.333333333333329" y="1" width="10" height="10"/>
+                            <rect key="frame" x="106" y="1" width="10" height="10"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="10" id="h8s-1j-sUb"/>
@@ -79,7 +79,7 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Her-KY-e31">
-                            <rect key="frame" x="516" y="1" width="10" height="10"/>
+                            <rect key="frame" x="509.33333333333326" y="1" width="10" height="10"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="10" id="eet-rO-YoM"/>
@@ -193,24 +193,23 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="nJM-CX-e2f" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="8UY-bL-NGN"/>
                 <constraint firstItem="1bp-Ke-jIF" firstAttribute="top" secondItem="nJM-CX-e2f" secondAttribute="bottom" constant="30" id="EIj-KL-PU3"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="bnW-Pc-f0i" secondAttribute="trailing" constant="10" id="Ffm-JW-TTC"/>
+                <constraint firstItem="1bp-Ke-jIF" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="Glb-Gc-Xs8"/>
                 <constraint firstItem="bnW-Pc-f0i" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="LH6-kv-nTM"/>
                 <constraint firstItem="bnW-Pc-f0i" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="NWi-6c-Y38"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="5SC-Nc-wQX" secondAttribute="trailing" constant="10" id="WEA-Ce-APa"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="BOH-FF-I0O" secondAttribute="trailing" constant="10" id="Z4F-OA-iDv"/>
                 <constraint firstItem="Her-KY-e31" firstAttribute="centerX" secondItem="FxV-rv-lzi" secondAttribute="centerX" id="ZqQ-mL-MBw"/>
                 <constraint firstItem="3vy-uF-Jsm" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="aqf-nD-fCZ"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="1bp-Ke-jIF" secondAttribute="trailing" id="ayI-2y-TeK"/>
                 <constraint firstItem="Blp-Pl-469" firstAttribute="centerX" secondItem="y0u-BJ-Uds" secondAttribute="centerX" id="b65-rZ-jgB"/>
-                <constraint firstItem="1bp-Ke-jIF" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="edP-QD-hrA"/>
                 <constraint firstItem="5SC-Nc-wQX" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="g4b-XL-sjh"/>
                 <constraint firstItem="3vy-uF-Jsm" firstAttribute="top" secondItem="1bp-Ke-jIF" secondAttribute="bottom" id="gcc-he-OBM"/>
                 <constraint firstItem="nJM-CX-e2f" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="iQC-ua-W3v"/>
                 <constraint firstAttribute="bottom" secondItem="3vy-uF-Jsm" secondAttribute="bottom" constant="10" id="kEa-Yc-GNb"/>
+                <constraint firstItem="1bp-Ke-jIF" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" constant="-10" id="nIh-Zt-0u2"/>
                 <constraint firstItem="5SC-Nc-wQX" firstAttribute="top" secondItem="BOH-FF-I0O" secondAttribute="bottom" constant="15" id="nzb-jr-eaI"/>
                 <constraint firstItem="bnW-Pc-f0i" firstAttribute="top" secondItem="5SC-Nc-wQX" secondAttribute="bottom" constant="15" id="pjr-ec-qOr"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="3vy-uF-Jsm" secondAttribute="trailing" id="rBq-fb-8BN"/>
