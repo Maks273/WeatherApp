@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D656E1725EF98D200A0C6EC /* DescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D656E1625EF98D200A0C6EC /* DescriptionTableViewCell.swift */; };
 		2DA49FCE25EF7B2E00EBF2D4 /* CityForecastPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA49FCD25EF7B2E00EBF2D4 /* CityForecastPresenter.swift */; };
 		2DA49FD025EF7B3A00EBF2D4 /* CityForecastRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA49FCF25EF7B3900EBF2D4 /* CityForecastRouter.swift */; };
 		2DA49FD225EF7B4400EBF2D4 /* CityForecastConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA49FD125EF7B4400EBF2D4 /* CityForecastConfigurator.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D656E1625EF98D200A0C6EC /* DescriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		2DA49FCD25EF7B2E00EBF2D4 /* CityForecastPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityForecastPresenter.swift; sourceTree = "<group>"; };
 		2DA49FCF25EF7B3900EBF2D4 /* CityForecastRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityForecastRouter.swift; sourceTree = "<group>"; };
 		2DA49FD125EF7B4400EBF2D4 /* CityForecastConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityForecastConfigurator.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				2DF3BFC925EED170000534E3 /* HourlyForecastTableViewCell.swift */,
+				2D656E1625EF98D200A0C6EC /* DescriptionTableViewCell.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 				2DF3BFBD25EE8ED3000534E3 /* UIViewExtension.swift in Sources */,
 				2DC13DFA25E84A2200B9C44C /* CityForecastViewController.swift in Sources */,
 				2DF3BFB825EE81FF000534E3 /* TodayForecastHeader.swift in Sources */,
+				2D656E1725EF98D200A0C6EC /* DescriptionTableViewCell.swift in Sources */,
 				2DF3BFCA25EED170000534E3 /* HourlyForecastTableViewCell.swift in Sources */,
 				2DC13DF625E84A2200B9C44C /* AppDelegate.swift in Sources */,
 				2DC13DF825E84A2200B9C44C /* SceneDelegate.swift in Sources */,

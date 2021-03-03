@@ -15,6 +15,7 @@ protocol CityForecastView: class {
 protocol CityForecastPresenter {
     func numberOfRows() -> Int
     func configureCell(_ tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell
+    func heightForRow(at indexPath: IndexPath) -> CGFloat
 }
 
 class CityForecastPresenterImplementation: CityForecastPresenter {
@@ -24,6 +25,9 @@ class CityForecastPresenterImplementation: CityForecastPresenter {
     
     private unowned var view: CityForecastView
     private let router: CityForecastRouter
+    private let hourlyForecastCellHeight: CGFloat = 140
+    private let cellHeight: CGFloat = 70
+    private let hourlyForecastIndexPath = IndexPath(row: 0, section: 0)
     
     //MARK: - Initalizer
     
@@ -35,14 +39,24 @@ class CityForecastPresenterImplementation: CityForecastPresenter {
     //MARK: - Helper
     
     func numberOfRows() -> Int {
-        return 1
+        return 3
+    }
+    
+    func heightForRow(at indexPath: IndexPath) -> CGFloat {
+        return indexPath == hourlyForecastIndexPath ? hourlyForecastCellHeight : cellHeight
     }
     
     func configureCell(_ tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "hourlyTableCell", for: indexPath) as! HourlyForecastTableViewCell
-        cell.backgroundColor = .clear
-        cell.delegate = self
-        return cell
+        if indexPath == hourlyForecastIndexPath {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "hourlyTableCell", for: indexPath) as! HourlyForecastTableViewCell
+            cell.backgroundColor = .clear
+            cell.delegate = self
+            return cell
+        }else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "descriptionCell", for: indexPath) as! DescriptionTableViewCell
+            cell.backgroundColor = .clear
+            return cell
+        }
     }
     
 }
