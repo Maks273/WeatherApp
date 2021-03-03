@@ -13,6 +13,8 @@ protocol CityForecastView: class {
 }
 
 protocol CityForecastPresenter {
+    var router: CityForecastRouter {get}
+    
     func numberOfRows() -> Int
     func configureCell(_ tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell
     func heightForRow(at indexPath: IndexPath) -> CGFloat
@@ -23,8 +25,8 @@ class CityForecastPresenterImplementation: CityForecastPresenter {
     
     //MARK: - Variables
     
+    let router: CityForecastRouter
     private unowned var view: CityForecastView
-    private let router: CityForecastRouter
     private let hourlyForecastCellHeight: CGFloat = 140
     private let descriptionCellHeight: CGFloat = 70
     private let forecastInfoCellHeight: CGFloat = 55

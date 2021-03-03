@@ -12,6 +12,7 @@ class CityForecastViewController: UIViewController {
     
     //MARK: - IBOutlets
     
+    @IBOutlet weak var headerView: TodayForecastHeader!
     @IBOutlet weak var tableView: UITableView!
     
     //MARK: - Variables
@@ -94,6 +95,7 @@ class CityForecastViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(UINib(nibName: "ForecastInfoTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "forecastInfoCell")
         tableView.tableFooterView = UIView()
+        headerView.delegate = self
     }
 
 
@@ -129,5 +131,11 @@ extension CityForecastViewController: UITableViewDataSource {
 extension CityForecastViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return presenter.heightForRow(at: indexPath)
+    }
+}
+
+extension CityForecastViewController: TodayForecastDelegate {
+    func showNextDaysScreen() {
+        presenter.router.showNextDaysScreen()
     }
 }
