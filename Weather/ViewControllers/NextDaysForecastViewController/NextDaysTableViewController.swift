@@ -14,6 +14,7 @@ class NextDaysTableViewController: UITableViewController {
     
     var presenter: NextDaysPresenter!
     var configurator: NextDaysConfigurator = NextDaysConfiguratorImplementation()
+    private let headerHeight: CGFloat = 60
     
     //MARK: - Life cycles
 
@@ -27,6 +28,7 @@ class NextDaysTableViewController: UITableViewController {
     
     private func configureTableView() {
         tableView.tableFooterView = UIView()
+        tableView.setupGradientLayer()
     }
     
     //MARK: Nav bar
@@ -55,9 +57,27 @@ class NextDaysTableViewController: UITableViewController {
         presenter.router.popToViewController()
     }
     
+    private func setupHeaderView() -> UIView {
+        let view = UIView()
+        
+        let label = configureHeaderLabel()
+        view.addSubview(label)
+        
+        return view
+    }
+    
+    private func configureHeaderLabel() -> UILabel {
+        let label = UILabel()
+        label.text = "Next 7 Days"
+        label.font = UIFont(name: "HelveticaNeue-Medium", size: 29)
+        label.textColor = .white
+        label.frame = CGRect(x: 12, y: 0, width: tableView.frame.width, height: headerHeight)
+        return label
+    }
+    
     
 
-    // MARK: - Table view data source
+    // MARK: - Table view data source & Delegate
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -71,6 +91,13 @@ class NextDaysTableViewController: UITableViewController {
         return presenter.heightForRow(at: indexPath)
     }
     
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return setupHeaderView()
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return headerHeight
+    }
     
 
 }

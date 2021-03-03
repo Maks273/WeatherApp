@@ -51,16 +51,7 @@ class CityForecastViewController: UIViewController {
     }
     
     private func setupGradientBgColor() {
-        let gradientLayer: CAGradientLayer = CAGradientLayer()
-        
-        let topColor = UIColor.lightBlue.cgColor
-        let bottomColor = UIColor.lightPurple.cgColor
-        
-        gradientLayer.colors = [topColor,bottomColor]
-        gradientLayer.locations = [0.0, 1.0]
-        gradientLayer.frame = self.view.frame
-        
-        self.view.layer.insertSublayer(gradientLayer, at: 0)
+        self.view.setupGradientLayer()
     }
     
     private func setupNavButtons() {
