@@ -9,7 +9,7 @@
 import UIKit
 
 protocol CityForecastView: class {
-    
+    func configureCellStyle(for cell: UITableViewCell, hideSeparator: Bool)
 }
 
 protocol CityForecastPresenter {
@@ -26,8 +26,10 @@ class CityForecastPresenterImplementation: CityForecastPresenter {
     private unowned var view: CityForecastView
     private let router: CityForecastRouter
     private let hourlyForecastCellHeight: CGFloat = 140
-    private let cellHeight: CGFloat = 70
+    private let descriptionCellHeight: CGFloat = 70
+    private let forecastInfoCellHeight: CGFloat = 55
     private let hourlyForecastIndexPath = IndexPath(row: 0, section: 0)
+    private let descriptionIndexPath = IndexPath(row: 1, section: 0)
     
     //MARK: - Initalizer
     
@@ -39,27 +41,39 @@ class CityForecastPresenterImplementation: CityForecastPresenter {
     //MARK: - Helper
     
     func numberOfRows() -> Int {
-        return 3
+        return 5
     }
     
     func heightForRow(at indexPath: IndexPath) -> CGFloat {
-        return indexPath == hourlyForecastIndexPath ? hourlyForecastCellHeight : cellHeight
+        if indexPath == hourlyForecastIndexPath {
+            return hourlyForecastCellHeight
+        }else if indexPath == descriptionIndexPath {
+            return descriptionCellHeight
+        }else {
+            return forecastInfoCellHeight
+        }
     }
     
     func configureCell(_ tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
         if indexPath == hourlyForecastIndexPath {
             let cell = tableView.dequeueReusableCell(withIdentifier: "hourlyTableCell", for: indexPath) as! HourlyForecastTableViewCell
-            cell.backgroundColor = .clear
+            view.configureCellStyle(for: cell, hideSeparator: true)
             cell.delegate = self
             return cell
-        }else {
+        }else if indexPath == descriptionIndexPath {
             let cell = tableView.dequeueReusableCell(withIdentifier: "descriptionCell", for: indexPath) as! DescriptionTableViewCell
-            cell.backgroundColor = .clear
+            view.configureCellStyle(for: cell, hideSeparator: false)
+            return cell
+        }else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "forecastInfoCell", for: indexPath) as! ForecastInfoTableViewCell
+            view.configureCellStyle(for: cell, hideSeparator: false)
             return cell
         }
     }
     
 }
+
+//MARK: - HourlyForecastDelegate
 
 extension CityForecastPresenterImplementation: HourlyForecastDelegate {
     func numberOfItems() -> Int {

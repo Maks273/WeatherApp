@@ -92,6 +92,8 @@ class CityForecastViewController: UIViewController {
     private func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.register(UINib(nibName: "ForecastInfoTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "forecastInfoCell")
+        tableView.tableFooterView = UIView()
     }
 
 
@@ -101,6 +103,10 @@ class CityForecastViewController: UIViewController {
 
 extension CityForecastViewController: CityForecastView {
     
+    func configureCellStyle(for cell: UITableViewCell, hideSeparator: Bool) {
+        cell.separatorInset = UIEdgeInsets(top: 0, left: hideSeparator ? 0 : 12, bottom: 0, right: hideSeparator ? 1000 : 12)
+        cell.backgroundColor = .clear
+    }
 }
 
 //MARK: - UITableViewDataSource
