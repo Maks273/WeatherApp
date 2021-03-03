@@ -14,10 +14,16 @@ class CityForecastViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    //MARK: - Variables
+    
+    var presenter: CityForecastPresenter!
+    let configurator: CityForecastConfigurator = CityForecastConfiguratorImplementation()
+    
     //MARK: - Life cycles
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configurator.configure(self)
         setupGradientBgColor()
         configureNavBar()
         configureTableView()
@@ -91,18 +97,22 @@ class CityForecastViewController: UIViewController {
 
 }
 
+//MARK: - CityForecastView
+
+extension CityForecastViewController: CityForecastView {
+    
+}
+
 //MARK: - UITableViewDataSource
 
 extension CityForecastViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return presenter.numberOfRows()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "hourlyTableCell", for: indexPath)
-        cell.backgroundColor = .clear
-        return cell
+        return presenter.configureCell(tableView, at: indexPath)
     }
     
     

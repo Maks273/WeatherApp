@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2DA49FCE25EF7B2E00EBF2D4 /* CityForecastPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA49FCD25EF7B2E00EBF2D4 /* CityForecastPresenter.swift */; };
+		2DA49FD025EF7B3A00EBF2D4 /* CityForecastRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA49FCF25EF7B3900EBF2D4 /* CityForecastRouter.swift */; };
+		2DA49FD225EF7B4400EBF2D4 /* CityForecastConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA49FD125EF7B4400EBF2D4 /* CityForecastConfigurator.swift */; };
 		2DC13DF625E84A2200B9C44C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC13DF525E84A2200B9C44C /* AppDelegate.swift */; };
 		2DC13DF825E84A2200B9C44C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC13DF725E84A2200B9C44C /* SceneDelegate.swift */; };
 		2DC13DFA25E84A2200B9C44C /* CityForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC13DF925E84A2200B9C44C /* CityForecastViewController.swift */; };
@@ -23,6 +26,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2DA49FCD25EF7B2E00EBF2D4 /* CityForecastPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityForecastPresenter.swift; sourceTree = "<group>"; };
+		2DA49FCF25EF7B3900EBF2D4 /* CityForecastRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityForecastRouter.swift; sourceTree = "<group>"; };
+		2DA49FD125EF7B4400EBF2D4 /* CityForecastConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityForecastConfigurator.swift; sourceTree = "<group>"; };
 		2DC13DF225E84A2200B9C44C /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DC13DF525E84A2200B9C44C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2DC13DF725E84A2200B9C44C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +57,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2DA49FCC25EF7B1800EBF2D4 /* CityForecastViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2DC13DF925E84A2200B9C44C /* CityForecastViewController.swift */,
+				2DA49FCD25EF7B2E00EBF2D4 /* CityForecastPresenter.swift */,
+				2DA49FCF25EF7B3900EBF2D4 /* CityForecastRouter.swift */,
+				2DA49FD125EF7B4400EBF2D4 /* CityForecastConfigurator.swift */,
+			);
+			path = CityForecastViewController;
+			sourceTree = "<group>";
+		};
 		2DC13DE925E84A2200B9C44C = {
 			isa = PBXGroup;
 			children = (
@@ -94,7 +111,7 @@
 		2DF3BFB425EE7FDD000534E3 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				2DC13DF925E84A2200B9C44C /* CityForecastViewController.swift */,
+				2DA49FCC25EF7B1800EBF2D4 /* CityForecastViewController */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -225,13 +242,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DA49FD225EF7B4400EBF2D4 /* CityForecastConfigurator.swift in Sources */,
 				2DF3BFBD25EE8ED3000534E3 /* UIViewExtension.swift in Sources */,
 				2DC13DFA25E84A2200B9C44C /* CityForecastViewController.swift in Sources */,
 				2DF3BFB825EE81FF000534E3 /* TodayForecastHeader.swift in Sources */,
 				2DF3BFCA25EED170000534E3 /* HourlyForecastTableViewCell.swift in Sources */,
 				2DC13DF625E84A2200B9C44C /* AppDelegate.swift in Sources */,
 				2DC13DF825E84A2200B9C44C /* SceneDelegate.swift in Sources */,
+				2DA49FCE25EF7B2E00EBF2D4 /* CityForecastPresenter.swift in Sources */,
 				2DF3BFC425EECD86000534E3 /* HourlyForecastCollectionViewCell.swift in Sources */,
+				2DA49FD025EF7B3A00EBF2D4 /* CityForecastRouter.swift in Sources */,
 				2DF3BFBF25EEC3FD000534E3 /* UIColorExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

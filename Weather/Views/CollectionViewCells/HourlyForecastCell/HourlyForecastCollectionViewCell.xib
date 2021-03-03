@@ -35,7 +35,7 @@
                                         <rect key="frame" x="5" y="5" width="30" height="30"/>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.33450868389999999" green="0.50762572199629996" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="dSm-tM-7sT" secondAttribute="bottom" constant="5" id="3iP-SU-Fsf"/>
                                     <constraint firstItem="dSm-tM-7sT" firstAttribute="leading" secondItem="HfU-IJ-64j" secondAttribute="leading" constant="5" id="4KM-sX-btD"/>
@@ -57,7 +57,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.33450868394639754" green="0.46346985935385709" blue="0.92156862745098034" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="faf-6d-gvx" firstAttribute="top" secondItem="znz-vo-wPs" secondAttribute="top" constant="13" id="083-9p-KWY"/>
                             <constraint firstItem="HfU-IJ-64j" firstAttribute="top" secondItem="faf-6d-gvx" secondAttribute="bottom" constant="8" id="Hem-Gc-znv"/>
@@ -83,6 +83,7 @@
                     </view>
                 </subviews>
             </view>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="znz-vo-wPs" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="OfV-64-qqZ"/>
                 <constraint firstAttribute="trailing" secondItem="znz-vo-wPs" secondAttribute="trailing" id="QSO-KR-0Sp"/>

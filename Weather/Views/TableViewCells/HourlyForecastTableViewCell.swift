@@ -8,11 +8,20 @@
 
 import UIKit
 
+protocol HourlyForecastDelegate: class {
+    func numberOfItems() -> Int
+    func configureCell(_ collectionView: UICollectionView, at indexPath: IndexPath) -> UICollectionViewCell
+}
+
 class HourlyForecastTableViewCell: UITableViewCell {
     
     //MARK: - IBOutlets
     
     @IBOutlet weak var hourlyForecastCollectionView: UICollectionView!
+    
+    //MARK: - Variables
+    
+    weak var delegate: HourlyForecastDelegate!
     
     //MARK: - Override
 
@@ -46,13 +55,11 @@ extension HourlyForecastTableViewCell: UICollectionViewDelegate, UICollectionVie
 
 extension HourlyForecastTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 13
+        return delegate.numberOfItems()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "hourlyCollectionCell", for: indexPath)
-        return cell
-        
+        return delegate.configureCell(collectionView, at: indexPath)
     }
     
     
