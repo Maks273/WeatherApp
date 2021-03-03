@@ -17,6 +17,9 @@
 		2DF3BFBA25EE8204000534E3 /* TodayForecastHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DF3BFB925EE8204000534E3 /* TodayForecastHeader.xib */; };
 		2DF3BFBD25EE8ED3000534E3 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF3BFBC25EE8ED3000534E3 /* UIViewExtension.swift */; };
 		2DF3BFBF25EEC3FD000534E3 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF3BFBE25EEC3FD000534E3 /* UIColorExtension.swift */; };
+		2DF3BFC425EECD86000534E3 /* HourlyForecastCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF3BFC225EECD86000534E3 /* HourlyForecastCollectionViewCell.swift */; };
+		2DF3BFC525EECD86000534E3 /* HourlyForecastCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DF3BFC325EECD86000534E3 /* HourlyForecastCollectionViewCell.xib */; };
+		2DF3BFCA25EED170000534E3 /* HourlyForecastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF3BFC925EED170000534E3 /* HourlyForecastTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +35,9 @@
 		2DF3BFB925EE8204000534E3 /* TodayForecastHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodayForecastHeader.xib; sourceTree = "<group>"; };
 		2DF3BFBC25EE8ED3000534E3 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		2DF3BFBE25EEC3FD000534E3 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		2DF3BFC225EECD86000534E3 /* HourlyForecastCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyForecastCollectionViewCell.swift; sourceTree = "<group>"; };
+		2DF3BFC325EECD86000534E3 /* HourlyForecastCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HourlyForecastCollectionViewCell.xib; sourceTree = "<group>"; };
+		2DF3BFC925EED170000534E3 /* HourlyForecastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyForecastTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +102,8 @@
 		2DF3BFB525EE81AE000534E3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2DF3BFC825EED14B000534E3 /* TableViewCells */,
+				2DF3BFC025EECD4A000534E3 /* CollectionViewCells */,
 				2DF3BFB625EE81B8000534E3 /* Headers */,
 			);
 			path = Views;
@@ -117,6 +125,31 @@
 				2DF3BFBE25EEC3FD000534E3 /* UIColorExtension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		2DF3BFC025EECD4A000534E3 /* CollectionViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				2DF3BFC125EECD58000534E3 /* HourlyForecastCell */,
+			);
+			path = CollectionViewCells;
+			sourceTree = "<group>";
+		};
+		2DF3BFC125EECD58000534E3 /* HourlyForecastCell */ = {
+			isa = PBXGroup;
+			children = (
+				2DF3BFC225EECD86000534E3 /* HourlyForecastCollectionViewCell.swift */,
+				2DF3BFC325EECD86000534E3 /* HourlyForecastCollectionViewCell.xib */,
+			);
+			path = HourlyForecastCell;
+			sourceTree = "<group>";
+		};
+		2DF3BFC825EED14B000534E3 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				2DF3BFC925EED170000534E3 /* HourlyForecastTableViewCell.swift */,
+			);
+			path = TableViewCells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -179,6 +212,7 @@
 			files = (
 				2DC13E0225E84A2300B9C44C /* LaunchScreen.storyboard in Resources */,
 				2DF3BFBA25EE8204000534E3 /* TodayForecastHeader.xib in Resources */,
+				2DF3BFC525EECD86000534E3 /* HourlyForecastCollectionViewCell.xib in Resources */,
 				2DC13DFF25E84A2300B9C44C /* Assets.xcassets in Resources */,
 				2DC13DFD25E84A2200B9C44C /* Main.storyboard in Resources */,
 			);
@@ -194,8 +228,10 @@
 				2DF3BFBD25EE8ED3000534E3 /* UIViewExtension.swift in Sources */,
 				2DC13DFA25E84A2200B9C44C /* CityForecastViewController.swift in Sources */,
 				2DF3BFB825EE81FF000534E3 /* TodayForecastHeader.swift in Sources */,
+				2DF3BFCA25EED170000534E3 /* HourlyForecastTableViewCell.swift in Sources */,
 				2DC13DF625E84A2200B9C44C /* AppDelegate.swift in Sources */,
 				2DC13DF825E84A2200B9C44C /* SceneDelegate.swift in Sources */,
+				2DF3BFC425EECD86000534E3 /* HourlyForecastCollectionViewCell.swift in Sources */,
 				2DF3BFBF25EEC3FD000534E3 /* UIColorExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

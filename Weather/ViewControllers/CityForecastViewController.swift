@@ -12,6 +12,7 @@ class CityForecastViewController: UIViewController {
     
     //MARK: - IBOutlets
     
+    @IBOutlet weak var tableView: UITableView!
     
     //MARK: - Life cycles
 
@@ -19,6 +20,7 @@ class CityForecastViewController: UIViewController {
         super.viewDidLoad()
         setupGradientBgColor()
         configureNavBar()
+        configureTableView()
     }
     
     
@@ -78,7 +80,38 @@ class CityForecastViewController: UIViewController {
     @objc private func menuBtnPressed() {
         
     }
+    
+    //MARK: TableView
+    
+    private func configureTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
 
 
 }
 
+//MARK: - UITableViewDataSource
+
+extension CityForecastViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "hourlyTableCell", for: indexPath)
+        cell.backgroundColor = .clear
+        return cell
+    }
+    
+    
+}
+
+//MARK: - UITableViewDelegate
+
+extension CityForecastViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 140
+    }
+}
