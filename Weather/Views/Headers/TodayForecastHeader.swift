@@ -8,11 +8,19 @@
 
 import UIKit
 
+protocol TodayForecastDelegate: class {
+    func showNextDaysScreen()
+}
+
 class TodayForecastHeader: UIView {
 
     //MARK: - IBOutlets
     
     @IBOutlet var containerView: UIView!
+    
+    //MARK: - Variables
+    
+    weak var delegate: TodayForecastDelegate?
     
     //MARK: - Initalizers
     
@@ -27,6 +35,13 @@ class TodayForecastHeader: UIView {
     }
     
     //MARK: - Helper
+    
+    
+    //MARK: - IBActions
+    
+    @IBAction func nextDaysBtnPressed(_ sender: Any) {
+        delegate?.showNextDaysScreen()
+    }
     
     
     //MARK: - Private methods

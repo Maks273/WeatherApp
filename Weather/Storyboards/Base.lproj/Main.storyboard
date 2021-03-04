@@ -11,7 +11,7 @@
         <!--City Forecast View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="CityForecastViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CityForecastViewController" id="BYZ-38-t0r" customClass="CityForecastViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -105,12 +105,43 @@
                     </view>
                     <navigationItem key="navigationItem" id="Yuo-T3-daA"/>
                     <connections>
+                        <outlet property="headerView" destination="4Q2-19-RSb" id="SdF-HF-rXH"/>
                         <outlet property="tableView" destination="H8P-4R-GQG" id="GHc-Lt-6uG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="900.00000000000011" y="133.92857142857142"/>
+        </scene>
+        <!--Next Days View Controller-->
+        <scene sceneID="zoK-87-wPO">
+            <objects>
+                <viewController storyboardIdentifier="NextDaysViewController" id="L2y-7T-EwV" customClass="NextDaysViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Tds-1B-UmD">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="agQ-sq-xjJ">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="agQ-sq-xjJ" firstAttribute="leading" secondItem="biG-bc-Yzm" secondAttribute="leading" id="RQa-PN-N3n"/>
+                            <constraint firstAttribute="bottom" secondItem="agQ-sq-xjJ" secondAttribute="bottom" id="TSh-7L-16c"/>
+                            <constraint firstItem="agQ-sq-xjJ" firstAttribute="trailing" secondItem="biG-bc-Yzm" secondAttribute="trailing" id="dX3-0B-jZ8"/>
+                            <constraint firstItem="agQ-sq-xjJ" firstAttribute="top" secondItem="Tds-1B-UmD" secondAttribute="top" id="kXJ-oX-6n8"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="biG-bc-Yzm"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="agQ-sq-xjJ" id="MFg-Im-Ic2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dPb-OV-Uii" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1649" y="134"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="lEm-fK-BNW">
