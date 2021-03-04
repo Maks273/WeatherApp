@@ -9,7 +9,7 @@
 import UIKit
 
 protocol FindCityRouter {
-    
+    func popToViewController()
 }
 
 class FindCityRouterImplementation: FindCityRouter {
@@ -22,6 +22,12 @@ class FindCityRouterImplementation: FindCityRouter {
     
     init(viewController: UIViewController) {
         self.viewController = viewController
+    }
+    
+    //MARK: - Helper
+    
+    func popToViewController() {
+        viewController.navigationController?.popViewController(animated: true)
     }
     
 }

@@ -13,7 +13,7 @@ protocol FindCityView: class {
 }
 
 protocol FindCityPresenter {
-    
+    var router: FindCityRouter {get}
 }
 
 class FindCityPresenterImplementation: FindCityPresenter {
