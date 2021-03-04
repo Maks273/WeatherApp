@@ -113,33 +113,35 @@
             </objects>
             <point key="canvasLocation" x="900.00000000000011" y="133.92857142857142"/>
         </scene>
-        <!--Next Days Table View Controller-->
-        <scene sceneID="zwd-40-DI0">
+        <!--Next Days View Controller-->
+        <scene sceneID="zoK-87-wPO">
             <objects>
-                <tableViewController storyboardIdentifier="NextDaysTableViewController" id="nfO-hE-mW4" customClass="NextDaysTableViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="aPb-Ia-b5y">
+                <viewController storyboardIdentifier="NextDaysViewController" id="L2y-7T-EwV" customClass="NextDaysViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Tds-1B-UmD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="agQ-sq-xjJ">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="fpp-ae-c2E">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fpp-ae-c2E" id="wGr-UD-9Wa">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="nfO-hE-mW4" id="tKb-8Z-AFv"/>
-                            <outlet property="delegate" destination="nfO-hE-mW4" id="9vl-T6-nle"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="i33-OF-iXS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                        <constraints>
+                            <constraint firstItem="agQ-sq-xjJ" firstAttribute="leading" secondItem="biG-bc-Yzm" secondAttribute="leading" id="RQa-PN-N3n"/>
+                            <constraint firstAttribute="bottom" secondItem="agQ-sq-xjJ" secondAttribute="bottom" id="TSh-7L-16c"/>
+                            <constraint firstItem="agQ-sq-xjJ" firstAttribute="trailing" secondItem="biG-bc-Yzm" secondAttribute="trailing" id="dX3-0B-jZ8"/>
+                            <constraint firstItem="agQ-sq-xjJ" firstAttribute="top" secondItem="Tds-1B-UmD" secondAttribute="top" id="kXJ-oX-6n8"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="biG-bc-Yzm"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="agQ-sq-xjJ" id="MFg-Im-Ic2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dPb-OV-Uii" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1703" y="142"/>
+            <point key="canvasLocation" x="1649" y="134"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="lEm-fK-BNW">

@@ -8,7 +8,11 @@
 
 import UIKit
 
-class NextDaysTableViewController: UITableViewController {
+class NextDaysViewController: UIViewController {
+    
+    //MARK: - IBOutlets
+    
+    @IBOutlet var tableView: UITableView!
     
     //MARK: - Variables
     
@@ -17,18 +21,22 @@ class NextDaysTableViewController: UITableViewController {
     private let headerHeight: CGFloat = 60
     
     //MARK: - Life cycles
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
         configureNavBar()
+        presenter.viewDidLoad()
     }
     
     //MARK: - Private methods
     
     private func configureTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
         tableView.tableFooterView = UIView()
-        tableView.setupGradientLayer()
+        self.view.setupGradientLayer()
+        tableView.register(UINib(nibName: "NextDaysTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "nextDaysCell")
     }
     
     //MARK: Nav bar
@@ -76,34 +84,59 @@ class NextDaysTableViewController: UITableViewController {
     }
     
     
-
-    // MARK: - Table view data source & Delegate
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.numberOfRow()
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return presenter.heightForRow(at: indexPath)
-    }
-    
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return setupHeaderView()
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return headerHeight
-    }
-    
-
 }
 
 //MARK: - NextDaysView
 
-extension NextDaysTableViewController: NextDaysView {
+extension NextDaysViewController: NextDaysView {
+    func reloadRows(at indexPaths: [IndexPath]) {
+        tableView.reloadRows(at: indexPaths, with: .none)
+    }
+}
+
+//MARK: - UITableViewDataSource
+
+extension NextDaysViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return presenter.numberOfRow()
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "nextDaysCell", for: indexPath) as! NextDaysTableViewCell
+        if let model = presenter.getModel(for: indexPath) {
+             cell.configure(with: model)
+             cell.backgroundColor =  model.isExpanded ? UIColor(red: 123/255, green: 159/255, blue: 241/255, alpha: 1) : .clear
+        }
+        cell.selectionStyle = .none
+        return cell
+    }
+    
+    
+}
+
+//MARK: - UITableViewDelegate
+
+extension NextDaysViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return presenter.heightForRow(at: indexPath)
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return setupHeaderView()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return headerHeight
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter.didSelectRow(at: indexPath)
+    }
     
 }

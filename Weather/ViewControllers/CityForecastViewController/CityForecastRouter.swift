@@ -27,7 +27,7 @@ class CityForecastRouterImplementation: CityForecastRouter {
     //MARK: - Helper
     
     func showNextDaysScreen() {
-        let nextDays = StoryboardService.main.viewController(viewControllerClass: NextDaysTableViewController.self)
+        let nextDays = StoryboardService.main.viewController(viewControllerClass: NextDaysViewController.self)
         nextDays.configurator.configure(nextDays)
         viewController.navigationController?.pushViewController(nextDays, animated: true)
     }

@@ -20,7 +20,7 @@ class NextDaysRouterImplementation: NextDaysRouter {
     
     //MARK: Initalizer
     
-    init(viewConttroller: NextDaysTableViewController) {
+    init(viewConttroller: NextDaysViewController) {
         self.viewConttroller = viewConttroller
     }
     
