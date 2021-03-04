@@ -21,6 +21,10 @@
 		2DA49FCE25EF7B2E00EBF2D4 /* CityForecastPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA49FCD25EF7B2E00EBF2D4 /* CityForecastPresenter.swift */; };
 		2DA49FD025EF7B3A00EBF2D4 /* CityForecastRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA49FCF25EF7B3900EBF2D4 /* CityForecastRouter.swift */; };
 		2DA49FD225EF7B4400EBF2D4 /* CityForecastConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA49FD125EF7B4400EBF2D4 /* CityForecastConfigurator.swift */; };
+		2DB8ADE725F16564009720C0 /* FindCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB8ADE625F16564009720C0 /* FindCityViewController.swift */; };
+		2DB8ADEB25F165A6009720C0 /* FindCityPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB8ADEA25F165A6009720C0 /* FindCityPresenter.swift */; };
+		2DB8ADEE25F165B2009720C0 /* FindCityConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB8ADED25F165B2009720C0 /* FindCityConfigurator.swift */; };
+		2DB8ADF125F165BA009720C0 /* FindCityRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB8ADF025F165BA009720C0 /* FindCityRouter.swift */; };
 		2DC13DF625E84A2200B9C44C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC13DF525E84A2200B9C44C /* AppDelegate.swift */; };
 		2DC13DF825E84A2200B9C44C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC13DF725E84A2200B9C44C /* SceneDelegate.swift */; };
 		2DC13DFA25E84A2200B9C44C /* CityForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC13DF925E84A2200B9C44C /* CityForecastViewController.swift */; };
@@ -51,6 +55,10 @@
 		2DA49FCD25EF7B2E00EBF2D4 /* CityForecastPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityForecastPresenter.swift; sourceTree = "<group>"; };
 		2DA49FCF25EF7B3900EBF2D4 /* CityForecastRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityForecastRouter.swift; sourceTree = "<group>"; };
 		2DA49FD125EF7B4400EBF2D4 /* CityForecastConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityForecastConfigurator.swift; sourceTree = "<group>"; };
+		2DB8ADE625F16564009720C0 /* FindCityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindCityViewController.swift; sourceTree = "<group>"; };
+		2DB8ADEA25F165A6009720C0 /* FindCityPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindCityPresenter.swift; sourceTree = "<group>"; };
+		2DB8ADED25F165B2009720C0 /* FindCityConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindCityConfigurator.swift; sourceTree = "<group>"; };
+		2DB8ADF025F165BA009720C0 /* FindCityRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindCityRouter.swift; sourceTree = "<group>"; };
 		2DC13DF225E84A2200B9C44C /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DC13DF525E84A2200B9C44C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2DC13DF725E84A2200B9C44C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -127,6 +135,17 @@
 			path = CityForecastViewController;
 			sourceTree = "<group>";
 		};
+		2DB8ADE525F16550009720C0 /* FindCityViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2DB8ADE625F16564009720C0 /* FindCityViewController.swift */,
+				2DB8ADEA25F165A6009720C0 /* FindCityPresenter.swift */,
+				2DB8ADED25F165B2009720C0 /* FindCityConfigurator.swift */,
+				2DB8ADF025F165BA009720C0 /* FindCityRouter.swift */,
+			);
+			path = FindCityViewController;
+			sourceTree = "<group>";
+		};
 		2DC13DE925E84A2200B9C44C = {
 			isa = PBXGroup;
 			children = (
@@ -171,6 +190,7 @@
 		2DF3BFB425EE7FDD000534E3 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				2DB8ADE525F16550009720C0 /* FindCityViewController */,
 				2D680DD025F01FFB00ADE520 /* NextDaysForecastViewController */,
 				2DA49FCC25EF7B1800EBF2D4 /* CityForecastViewController */,
 			);
@@ -311,8 +331,10 @@
 			files = (
 				2DA49FD225EF7B4400EBF2D4 /* CityForecastConfigurator.swift in Sources */,
 				2D680DCE25F010A400ADE520 /* ForecastInfoTableViewCell.swift in Sources */,
+				2DB8ADF125F165BA009720C0 /* FindCityRouter.swift in Sources */,
 				2DF3BFBD25EE8ED3000534E3 /* UIViewExtension.swift in Sources */,
 				2DC13DFA25E84A2200B9C44C /* CityForecastViewController.swift in Sources */,
+				2DB8ADE725F16564009720C0 /* FindCityViewController.swift in Sources */,
 				2DF3BFB825EE81FF000534E3 /* TodayForecastHeader.swift in Sources */,
 				2D656E1725EF98D200A0C6EC /* DescriptionTableViewCell.swift in Sources */,
 				2DF3BFCA25EED170000534E3 /* HourlyForecastTableViewCell.swift in Sources */,
@@ -320,12 +342,14 @@
 				2D680DD825F0205E00ADE520 /* NextDaysRouter.swift in Sources */,
 				2D9BE25A25F0D48800924AB1 /* NextDaysTableViewCell.swift in Sources */,
 				2D680DD625F0205400ADE520 /* NextDaysConfigurator.swift in Sources */,
+				2DB8ADEE25F165B2009720C0 /* FindCityConfigurator.swift in Sources */,
 				2DC13DF625E84A2200B9C44C /* AppDelegate.swift in Sources */,
 				2DC13DF825E84A2200B9C44C /* SceneDelegate.swift in Sources */,
 				2DA49FCE25EF7B2E00EBF2D4 /* CityForecastPresenter.swift in Sources */,
 				2DF3BFC425EECD86000534E3 /* HourlyForecastCollectionViewCell.swift in Sources */,
 				2D680DDB25F023AD00ADE520 /* StoryboardService.swift in Sources */,
 				2DA49FD025EF7B3A00EBF2D4 /* CityForecastRouter.swift in Sources */,
+				2DB8ADEB25F165A6009720C0 /* FindCityPresenter.swift in Sources */,
 				2D680DDD25F0246C00ADE520 /* UIViewControllerExtension.swift in Sources */,
 				2D680DD425F0204700ADE520 /* NextDaysPresenter.swift in Sources */,
 				2DF3BFBF25EEC3FD000534E3 /* UIColorExtension.swift in Sources */,

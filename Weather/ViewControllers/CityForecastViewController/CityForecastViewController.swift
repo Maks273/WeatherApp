@@ -81,7 +81,7 @@ class CityForecastViewController: UIViewController {
     }
     
     @objc private func menuBtnPressed() {
-        
+        presenter.router.showFindCityScreen()
     }
     
     //MARK: TableView
