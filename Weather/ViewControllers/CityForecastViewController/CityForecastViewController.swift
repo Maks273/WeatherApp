@@ -21,7 +21,7 @@ class CityForecastViewController: UIViewController {
     let configurator: CityForecastConfigurator = CityForecastConfiguratorImplementation()
     
     //MARK: - Life cycles
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configurator.configure(self)
@@ -33,10 +33,15 @@ class CityForecastViewController: UIViewController {
     
     //MARK: - Helper
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        self.view.layer.sublayers?.first?.frame = self.view.layer.bounds
+    }
+    
     
     //MARK: - Private methods
     
-        //MARK: Nav Bar
+    //MARK: Nav Bar
     
     private func configureNavBar() {
         setupNavButtons()
