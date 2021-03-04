@@ -29,6 +29,11 @@ class NextDaysViewController: UIViewController {
         presenter.viewDidLoad()
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        self.view.layer.sublayers?.first?.frame = self.view.layer.bounds
+    }
+    
     //MARK: - Private methods
     
     private func configureTableView() {
