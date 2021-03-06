@@ -82,8 +82,8 @@ class FindCityViewController: UIViewController {
     }
     
     private func setupChangeDegreesBtn() {
-        let celsiusBtn = createDegreesBtn(title: "ºC", tag: 0, color: .white)
-        let farengateBtn = createDegreesBtn(title: "ºF", tag: 1, color: .systemGray5)
+        let celsiusBtn = createDegreesBtn(title: "ºC", tag: 0, color: presenter.getTemperaturButtonColor(for: 0))
+        let farengateBtn = createDegreesBtn(title: "ºF", tag: 1, color: presenter.getTemperaturButtonColor(for: 1))
         navigationItem.rightBarButtonItems = [farengateBtn, celsiusBtn]
     }
     
@@ -100,7 +100,19 @@ class FindCityViewController: UIViewController {
     }
     
     @objc private func changeDegreesBtnPressed(sender: UIBarButtonItem) {
-        
+        presenter.changeTemperatureMetric(tag: sender.tag)
+        changeSelectedTemperaturBtnColor()
+        tableView.reloadData()
+    }
+    
+    private func changeSelectedTemperaturBtnColor() {
+        navigationItem.rightBarButtonItems?.forEach({ (button) in
+            let attributes: [NSAttributedString.Key: Any] = [
+                .font: UIFont(name: "HelveticaNeue-Medium", size: 20)!,
+                .foregroundColor: presenter.getTemperaturButtonColor(for: button.tag)
+            ]
+            button.setTitleTextAttributes(attributes, for: .normal)
+        })
     }
     
     private func setupSearchTextField() {

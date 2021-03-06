@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		090135CA0909793379C0C2E1 /* Pods_Weather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4E5ABAD766F92767B6AD56C /* Pods_Weather.framework */; };
 		2D00BFF725F38D48008EF6FF /* FindCityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D00BFF625F38D48008EF6FF /* FindCityTableViewCell.swift */; };
+		2D40F40425F3BF070049C962 /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D40F40325F3BF070049C962 /* UserDefaultsService.swift */; };
 		2D656E1725EF98D200A0C6EC /* DescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D656E1625EF98D200A0C6EC /* DescriptionTableViewCell.swift */; };
 		2D680DCE25F010A400ADE520 /* ForecastInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D680DCC25F010A400ADE520 /* ForecastInfoTableViewCell.swift */; };
 		2D680DCF25F010A400ADE520 /* ForecastInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D680DCD25F010A400ADE520 /* ForecastInfoTableViewCell.xib */; };
@@ -45,6 +46,7 @@
 
 /* Begin PBXFileReference section */
 		2D00BFF625F38D48008EF6FF /* FindCityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindCityTableViewCell.swift; sourceTree = "<group>"; };
+		2D40F40325F3BF070049C962 /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
 		2D656E1625EF98D200A0C6EC /* DescriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		2D680DCC25F010A400ADE520 /* ForecastInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastInfoTableViewCell.swift; sourceTree = "<group>"; };
 		2D680DCD25F010A400ADE520 /* ForecastInfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForecastInfoTableViewCell.xib; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				2D680DDA25F023AD00ADE520 /* StoryboardService.swift */,
+				2D40F40325F3BF070049C962 /* UserDefaultsService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -426,6 +429,7 @@
 				2D680DD825F0205E00ADE520 /* NextDaysRouter.swift in Sources */,
 				2D9BE25A25F0D48800924AB1 /* NextDaysTableViewCell.swift in Sources */,
 				2D680DD625F0205400ADE520 /* NextDaysConfigurator.swift in Sources */,
+				2D40F40425F3BF070049C962 /* UserDefaultsService.swift in Sources */,
 				2DB8ADEE25F165B2009720C0 /* FindCityConfigurator.swift in Sources */,
 				2DC13DF625E84A2200B9C44C /* AppDelegate.swift in Sources */,
 				2DC13DF825E84A2200B9C44C /* SceneDelegate.swift in Sources */,

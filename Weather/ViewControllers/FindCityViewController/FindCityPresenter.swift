@@ -9,6 +9,12 @@
 import UIKit
 import GooglePlaces
 
+enum TemperatureMetrics: String {
+    case celsius = "metric"
+    case fahrenheit = "imperial"
+    
+}
+
 protocol FindCityView: class {
     func changeAutoCompleteHeight(constant: CGFloat)
     func hideAutoCompleteTable(isHidden: Bool)
@@ -23,6 +29,8 @@ protocol FindCityPresenter {
     func title(for indexPath: IndexPath) -> String?
     func didSelectAutoCompleteCell(at indexPath: IndexPath)
     func numberOfCitiesRows() -> Int
+    func getTemperaturButtonColor(for tag: Int) -> UIColor
+    func changeTemperatureMetric(tag: Int)
 }
 
 class FindCityPresenterImplementation: FindCityPresenter {
@@ -89,10 +97,29 @@ class FindCityPresenterImplementation: FindCityPresenter {
         return cities.count
     }
     
+    func changeTemperatureMetric(tag: Int) {
+        UserDefaultsService.shared.saveTemperatureMetric(metric: tag == 0 ? TemperatureMetrics.celsius.rawValue : TemperatureMetrics.fahrenheit.rawValue)
+    }
+    
+    func getTemperaturButtonColor(for tag: Int) -> UIColor {
+        return UserDefaultsService.shared.getTemperatureMetric() == TemperatureMetrics.celsius.rawValue && tag == 0 ||
+            UserDefaultsService.shared.getTemperatureMetric() == TemperatureMetrics.fahrenheit.rawValue && tag == 1 ? .white : .systemGray5
+    }
+    
     
     //MARK: - Private methods
     
     private func getPlaceModel(for index: Int) -> GoogleAddressModel? {
         return index < autoCompleteDataSource.count ? autoCompleteDataSource[index] : nil
     }
+    
+    private func converToCelsius(_ degrees: Double) -> Int {
+        return Int((degrees - 32) * (5/9))
+    }
+    
+    private func converToFahrenheit(_ degrees: Double) -> Int {
+        return Int(degrees * 1.8 + 32)
+    }
+    
+    
 }
