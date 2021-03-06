@@ -58,6 +58,8 @@ class FindCityViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableFooterView = UIView()
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12)
+        tableView.separatorColor = UIColor(red: 140/255, green: 171/255, blue: 232/255, alpha: 1)
     }
     
     //MARK: Nav bar
@@ -237,17 +239,21 @@ extension FindCityViewController: UITableViewDelegate {
 extension FindCityViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableView == autoCompleteTableView {
-            return presenter.numberOfAutoCompleteRows()
-        }
-        return 0
+        return tableView == autoCompleteTableView ? presenter.numberOfAutoCompleteRows() : presenter.numberOfCitiesRows()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "autoCompleteCell", for: indexPath)
-        cell.textLabel?.text = presenter.title(for: indexPath)
-        cell.textLabel?.font = UIFont(name: "HelveticaNeue", size: 14)
-        cell.textLabel?.textAlignment = .left
+        if tableView == autoCompleteTableView {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "autoCompleteCell", for: indexPath)
+            cell.textLabel?.text = presenter.title(for: indexPath)
+            cell.textLabel?.font = UIFont(name: "HelveticaNeue", size: 14)
+            cell.textLabel?.textAlignment = .left
+            return cell
+        }
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "findCityCell", for: indexPath) as! FindCityTableViewCell
+        cell.backgroundColor = .clear
+        
         return cell
     }
     

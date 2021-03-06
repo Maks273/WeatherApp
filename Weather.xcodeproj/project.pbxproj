@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		090135CA0909793379C0C2E1 /* Pods_Weather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4E5ABAD766F92767B6AD56C /* Pods_Weather.framework */; };
+		2D00BFF725F38D48008EF6FF /* FindCityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D00BFF625F38D48008EF6FF /* FindCityTableViewCell.swift */; };
 		2D656E1725EF98D200A0C6EC /* DescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D656E1625EF98D200A0C6EC /* DescriptionTableViewCell.swift */; };
 		2D680DCE25F010A400ADE520 /* ForecastInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D680DCC25F010A400ADE520 /* ForecastInfoTableViewCell.swift */; };
 		2D680DCF25F010A400ADE520 /* ForecastInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D680DCD25F010A400ADE520 /* ForecastInfoTableViewCell.xib */; };
@@ -43,6 +44,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D00BFF625F38D48008EF6FF /* FindCityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindCityTableViewCell.swift; sourceTree = "<group>"; };
 		2D656E1625EF98D200A0C6EC /* DescriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		2D680DCC25F010A400ADE520 /* ForecastInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastInfoTableViewCell.swift; sourceTree = "<group>"; };
 		2D680DCD25F010A400ADE520 /* ForecastInfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForecastInfoTableViewCell.xib; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 				2D680DCB25F0108F00ADE520 /* ForecastInfoCell */,
 				2DF3BFC925EED170000534E3 /* HourlyForecastTableViewCell.swift */,
 				2D656E1625EF98D200A0C6EC /* DescriptionTableViewCell.swift */,
+				2D00BFF625F38D48008EF6FF /* FindCityTableViewCell.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -417,6 +420,7 @@
 				2D79DBCF25F28F5B002D1D33 /* GoogleAddressModel.swift in Sources */,
 				2DF3BFB825EE81FF000534E3 /* TodayForecastHeader.swift in Sources */,
 				2D656E1725EF98D200A0C6EC /* DescriptionTableViewCell.swift in Sources */,
+				2D00BFF725F38D48008EF6FF /* FindCityTableViewCell.swift in Sources */,
 				2DF3BFCA25EED170000534E3 /* HourlyForecastTableViewCell.swift in Sources */,
 				2D680DD225F0201B00ADE520 /* NextDaysViewController.swift in Sources */,
 				2D680DD825F0205E00ADE520 /* NextDaysRouter.swift in Sources */,

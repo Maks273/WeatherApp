@@ -22,6 +22,7 @@ protocol FindCityPresenter {
     func numberOfAutoCompleteRows() -> Int
     func title(for indexPath: IndexPath) -> String?
     func didSelectAutoCompleteCell(at indexPath: IndexPath)
+    func numberOfCitiesRows() -> Int
 }
 
 class FindCityPresenterImplementation: FindCityPresenter {
@@ -31,6 +32,8 @@ class FindCityPresenterImplementation: FindCityPresenter {
     unowned var view: FindCityView
     var router: FindCityRouter
     private var autoCompleteDataSource: [GoogleAddressModel] = []
+    private let autoCompleteCellHeight: CGFloat = 46
+    private let cities: [String] = ["",""]
     
     //MARK: - Initalizer
     
@@ -54,7 +57,7 @@ class FindCityPresenterImplementation: FindCityPresenter {
             if error == nil {
                 results?.forEach{ sSelf.autoCompleteDataSource.append(GoogleAddressModel(model: $0))}
                 DispatchQueue.main.async {
-                    sSelf.view.changeAutoCompleteHeight(constant: CGFloat(sSelf.autoCompleteDataSource.count * 46))
+                    sSelf.view.changeAutoCompleteHeight(constant: CGFloat(sSelf.autoCompleteDataSource.count) * sSelf.autoCompleteCellHeight)
                     sSelf.view.hideAutoCompleteTable(isHidden: sSelf.autoCompleteDataSource.isEmpty)
                     sSelf.view.reloadAutoCompleteTableView()
                 }
@@ -79,6 +82,13 @@ class FindCityPresenterImplementation: FindCityPresenter {
         }
         print(currentPlaceModel)
     }
+    
+    //MARK: Find city
+    
+    func numberOfCitiesRows() -> Int {
+        return cities.count
+    }
+    
     
     //MARK: - Private methods
     

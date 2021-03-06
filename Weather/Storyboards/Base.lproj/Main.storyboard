@@ -156,6 +156,63 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MNM-xn-Imb">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" indentationWidth="10" reuseIdentifier="findCityCell" rowHeight="68" id="xUX-Je-b0o" customClass="FindCityTableViewCell" customModule="Weather" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="68"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xUX-Je-b0o" id="zam-5F-jKr">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="68"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mq5-HE-n4u">
+                                                    <rect key="frame" x="12" y="0.0" width="390" height="68"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12:17 PM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XTK-Cz-mQA">
+                                                            <rect key="frame" x="0.0" y="10" width="64.5" height="18"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="18" id="rts-pC-9lP"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Uzhhorod" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zGv-aI-BLD">
+                                                            <rect key="frame" x="0.0" y="33" width="101" height="25"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="23"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="103 º" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNl-JO-Cow">
+                                                            <rect key="frame" x="296.5" y="10" width="93.5" height="48"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="40"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstItem="aNl-JO-Cow" firstAttribute="top" secondItem="XTK-Cz-mQA" secondAttribute="top" id="0dQ-mY-Vkk"/>
+                                                        <constraint firstItem="zGv-aI-BLD" firstAttribute="top" secondItem="XTK-Cz-mQA" secondAttribute="bottom" constant="5" id="40b-GW-IMJ"/>
+                                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="zGv-aI-BLD" secondAttribute="bottom" constant="10" id="DLJ-wB-HRF"/>
+                                                        <constraint firstItem="XTK-Cz-mQA" firstAttribute="leading" secondItem="Mq5-HE-n4u" secondAttribute="leading" id="Wok-Qa-IHU"/>
+                                                        <constraint firstItem="XTK-Cz-mQA" firstAttribute="top" secondItem="Mq5-HE-n4u" secondAttribute="top" constant="10" id="afz-Hk-NBG"/>
+                                                        <constraint firstItem="aNl-JO-Cow" firstAttribute="bottom" secondItem="zGv-aI-BLD" secondAttribute="bottom" id="eMn-UQ-vb4"/>
+                                                        <constraint firstItem="aNl-JO-Cow" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="XTK-Cz-mQA" secondAttribute="trailing" constant="10" id="igm-CR-a4a"/>
+                                                        <constraint firstItem="zGv-aI-BLD" firstAttribute="leading" secondItem="Mq5-HE-n4u" secondAttribute="leading" id="qEB-12-0Sp"/>
+                                                        <constraint firstItem="aNl-JO-Cow" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="zGv-aI-BLD" secondAttribute="trailing" constant="10" id="ueC-aS-jW8"/>
+                                                        <constraint firstAttribute="trailing" secondItem="aNl-JO-Cow" secondAttribute="trailing" id="wrP-aY-jS5"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="Mq5-HE-n4u" secondAttribute="bottom" id="OVv-cg-6UA"/>
+                                                <constraint firstAttribute="trailing" secondItem="Mq5-HE-n4u" secondAttribute="trailing" constant="12" id="dJw-Je-DkG"/>
+                                                <constraint firstItem="Mq5-HE-n4u" firstAttribute="leading" secondItem="zam-5F-jKr" secondAttribute="leading" constant="12" id="jmR-oF-6s5"/>
+                                                <constraint firstItem="Mq5-HE-n4u" firstAttribute="top" secondItem="zam-5F-jKr" secondAttribute="top" id="n9D-p5-n3y"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ZY7-Og-RoD"/>
