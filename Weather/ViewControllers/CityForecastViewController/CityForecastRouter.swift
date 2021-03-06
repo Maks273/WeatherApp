@@ -10,6 +10,7 @@ import UIKit
 
 protocol CityForecastRouter {
     func showNextDaysScreen()
+    func showFindCityScreen()
 }
 
 class CityForecastRouterImplementation: CityForecastRouter {
@@ -30,6 +31,12 @@ class CityForecastRouterImplementation: CityForecastRouter {
         let nextDays = StoryboardService.main.viewController(viewControllerClass: NextDaysViewController.self)
         nextDays.configurator.configure(nextDays)
         viewController.navigationController?.pushViewController(nextDays, animated: true)
+    }
+    
+    func showFindCityScreen() {
+        let findCityVC = StoryboardService.main.viewController(viewControllerClass: FindCityViewController.self)
+        findCityVC.configurator.configure(findCityVC)
+        viewController.navigationController?.pushViewController(findCityVC, animated: true)
     }
 }
 
