@@ -7,13 +7,21 @@
 //
 
 import UIKit
+import GooglePlaces
 
 protocol FindCityView: class {
-    
+    func changeAutoCompleteHeight(constant: CGFloat)
+    func hideAutoCompleteTable(isHidden: Bool)
+    func reloadAutoCompleteTableView()
 }
 
 protocol FindCityPresenter {
     var router: FindCityRouter {get}
+    
+    func findCity(searchText: String)
+    func numberOfAutoCompleteRows() -> Int
+    func title(for indexPath: IndexPath) -> String?
+    func didSelectAutoCompleteCell(at indexPath: IndexPath)
 }
 
 class FindCityPresenterImplementation: FindCityPresenter {
@@ -22,7 +30,7 @@ class FindCityPresenterImplementation: FindCityPresenter {
     
     unowned var view: FindCityView
     var router: FindCityRouter
-    
+    private var autoCompleteDataSource: [GoogleAddressModel] = []
     
     //MARK: - Initalizer
     
@@ -31,4 +39,50 @@ class FindCityPresenterImplementation: FindCityPresenter {
         self.router = router
     }
     
+    //MARK: - Helper
+    
+    func findCity(searchText: String) {
+        
+        autoCompleteDataSource = []
+        let filter = GMSAutocompleteFilter()
+        filter.type = .region
+        
+        GMSPlacesClient.shared().findAutocompletePredictions(fromQuery: searchText, filter: filter, sessionToken: GMSAutocompleteSessionToken()) { [weak self] (results, error) in
+            
+            guard let sSelf = self else { return }
+        
+            if error == nil {
+                results?.forEach{ sSelf.autoCompleteDataSource.append(GoogleAddressModel(model: $0))}
+                DispatchQueue.main.async {
+                    sSelf.view.changeAutoCompleteHeight(constant: CGFloat(sSelf.autoCompleteDataSource.count * 46))
+                    sSelf.view.hideAutoCompleteTable(isHidden: sSelf.autoCompleteDataSource.isEmpty)
+                    sSelf.view.reloadAutoCompleteTableView()
+                }
+            }else {
+                NSLog("Error with finding city = \(error?.localizedDescription)")
+            }
+            
+        }
+    }
+    
+    func numberOfAutoCompleteRows() -> Int {
+        return autoCompleteDataSource.count
+    }
+    
+    func title(for indexPath: IndexPath) -> String? {
+        return indexPath.row < autoCompleteDataSource.count ? autoCompleteDataSource[indexPath.row].fullAddressLine : nil
+    }
+    
+    func didSelectAutoCompleteCell(at indexPath: IndexPath) {
+        guard let currentPlaceModel = getPlaceModel(for: indexPath.row) else {
+            return
+        }
+        print(currentPlaceModel)
+    }
+    
+    //MARK: - Private methods
+    
+    private func getPlaceModel(for index: Int) -> GoogleAddressModel? {
+        return index < autoCompleteDataSource.count ? autoCompleteDataSource[index] : nil
+    }
 }

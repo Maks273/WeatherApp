@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		090135CA0909793379C0C2E1 /* Pods_Weather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4E5ABAD766F92767B6AD56C /* Pods_Weather.framework */; };
 		2D656E1725EF98D200A0C6EC /* DescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D656E1625EF98D200A0C6EC /* DescriptionTableViewCell.swift */; };
 		2D680DCE25F010A400ADE520 /* ForecastInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D680DCC25F010A400ADE520 /* ForecastInfoTableViewCell.swift */; };
 		2D680DCF25F010A400ADE520 /* ForecastInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D680DCD25F010A400ADE520 /* ForecastInfoTableViewCell.xib */; };
@@ -16,6 +17,7 @@
 		2D680DD825F0205E00ADE520 /* NextDaysRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D680DD725F0205E00ADE520 /* NextDaysRouter.swift */; };
 		2D680DDB25F023AD00ADE520 /* StoryboardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D680DDA25F023AD00ADE520 /* StoryboardService.swift */; };
 		2D680DDD25F0246C00ADE520 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D680DDC25F0246C00ADE520 /* UIViewControllerExtension.swift */; };
+		2D79DBCF25F28F5B002D1D33 /* GoogleAddressModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D79DBCE25F28F5B002D1D33 /* GoogleAddressModel.swift */; };
 		2D9BE25A25F0D48800924AB1 /* NextDaysTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9BE25825F0D48800924AB1 /* NextDaysTableViewCell.swift */; };
 		2D9BE25B25F0D48800924AB1 /* NextDaysTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D9BE25925F0D48800924AB1 /* NextDaysTableViewCell.xib */; };
 		2DA49FCE25EF7B2E00EBF2D4 /* CityForecastPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA49FCD25EF7B2E00EBF2D4 /* CityForecastPresenter.swift */; };
@@ -50,6 +52,7 @@
 		2D680DD725F0205E00ADE520 /* NextDaysRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextDaysRouter.swift; sourceTree = "<group>"; };
 		2D680DDA25F023AD00ADE520 /* StoryboardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardService.swift; sourceTree = "<group>"; };
 		2D680DDC25F0246C00ADE520 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		2D79DBCE25F28F5B002D1D33 /* GoogleAddressModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAddressModel.swift; sourceTree = "<group>"; };
 		2D9BE25825F0D48800924AB1 /* NextDaysTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextDaysTableViewCell.swift; sourceTree = "<group>"; };
 		2D9BE25925F0D48800924AB1 /* NextDaysTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NextDaysTableViewCell.xib; sourceTree = "<group>"; };
 		2DA49FCD25EF7B2E00EBF2D4 /* CityForecastPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityForecastPresenter.swift; sourceTree = "<group>"; };
@@ -74,6 +77,9 @@
 		2DF3BFC225EECD86000534E3 /* HourlyForecastCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyForecastCollectionViewCell.swift; sourceTree = "<group>"; };
 		2DF3BFC325EECD86000534E3 /* HourlyForecastCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HourlyForecastCollectionViewCell.xib; sourceTree = "<group>"; };
 		2DF3BFC925EED170000534E3 /* HourlyForecastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyForecastTableViewCell.swift; sourceTree = "<group>"; };
+		58A469BA43FD713F69A78AD0 /* Pods-Weather.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather.debug.xcconfig"; path = "Target Support Files/Pods-Weather/Pods-Weather.debug.xcconfig"; sourceTree = "<group>"; };
+		7227E78DA02C2A9CDB09D48A /* Pods-Weather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather.release.xcconfig"; path = "Target Support Files/Pods-Weather/Pods-Weather.release.xcconfig"; sourceTree = "<group>"; };
+		C4E5ABAD766F92767B6AD56C /* Pods_Weather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				090135CA0909793379C0C2E1 /* Pods_Weather.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,6 +120,14 @@
 				2D680DDA25F023AD00ADE520 /* StoryboardService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		2D79DBCD25F28F4A002D1D33 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2D79DBCE25F28F5B002D1D33 /* GoogleAddressModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		2D9BE25725F0D46500924AB1 /* NextDaysCell */ = {
@@ -151,6 +166,8 @@
 			children = (
 				2DC13DF425E84A2200B9C44C /* Weather */,
 				2DC13DF325E84A2200B9C44C /* Products */,
+				84572396943AB9B4AF585014 /* Pods */,
+				751E88AA0513D9EDD187C1D6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -165,6 +182,7 @@
 		2DC13DF425E84A2200B9C44C /* Weather */ = {
 			isa = PBXGroup;
 			children = (
+				2D79DBCD25F28F4A002D1D33 /* Models */,
 				2D680DD925F023A100ADE520 /* Services */,
 				2DF3BFBB25EE8EBF000534E3 /* Extensions */,
 				2DF3BFB525EE81AE000534E3 /* Views */,
@@ -254,6 +272,23 @@
 			path = TableViewCells;
 			sourceTree = "<group>";
 		};
+		751E88AA0513D9EDD187C1D6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C4E5ABAD766F92767B6AD56C /* Pods_Weather.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		84572396943AB9B4AF585014 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				58A469BA43FD713F69A78AD0 /* Pods-Weather.debug.xcconfig */,
+				7227E78DA02C2A9CDB09D48A /* Pods-Weather.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -261,9 +296,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2DC13E0625E84A2300B9C44C /* Build configuration list for PBXNativeTarget "Weather" */;
 			buildPhases = (
+				F121395334139F87AD2FC848 /* [CP] Check Pods Manifest.lock */,
 				2DC13DEE25E84A2200B9C44C /* Sources */,
 				2DC13DEF25E84A2200B9C44C /* Frameworks */,
 				2DC13DF025E84A2200B9C44C /* Resources */,
+				5E0474CBA4E4271A935D552B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -324,6 +361,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5E0474CBA4E4271A935D552B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Weather/Pods-Weather-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Weather/Pods-Weather-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Weather/Pods-Weather-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F121395334139F87AD2FC848 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Weather-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2DC13DEE25E84A2200B9C44C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -335,6 +414,7 @@
 				2DF3BFBD25EE8ED3000534E3 /* UIViewExtension.swift in Sources */,
 				2DC13DFA25E84A2200B9C44C /* CityForecastViewController.swift in Sources */,
 				2DB8ADE725F16564009720C0 /* FindCityViewController.swift in Sources */,
+				2D79DBCF25F28F5B002D1D33 /* GoogleAddressModel.swift in Sources */,
 				2DF3BFB825EE81FF000534E3 /* TodayForecastHeader.swift in Sources */,
 				2D656E1725EF98D200A0C6EC /* DescriptionTableViewCell.swift in Sources */,
 				2DF3BFCA25EED170000534E3 /* HourlyForecastTableViewCell.swift in Sources */,
@@ -494,6 +574,7 @@
 		};
 		2DC13E0725E84A2300B9C44C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 58A469BA43FD713F69A78AD0 /* Pods-Weather.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -512,6 +593,7 @@
 		};
 		2DC13E0825E84A2300B9C44C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7227E78DA02C2A9CDB09D48A /* Pods-Weather.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
