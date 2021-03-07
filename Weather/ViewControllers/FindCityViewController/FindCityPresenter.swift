@@ -88,7 +88,17 @@ class FindCityPresenterImplementation: FindCityPresenter {
         guard let currentPlaceModel = getPlaceModel(for: indexPath.row) else {
             return
         }
-        print(currentPlaceModel)
+    
+        if let location = currentPlaceModel.location {
+            ApiService.shared.getCurrentWeather(location: location) { (error, result) in
+                if let error = error {
+                    print("ERROR = ", error.localizedDescription)
+                }else {
+                    print(result)
+                }
+            }
+        }
+        
     }
     
     //MARK: Find city

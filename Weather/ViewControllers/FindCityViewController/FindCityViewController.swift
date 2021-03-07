@@ -30,7 +30,7 @@ class FindCityViewController: UIViewController {
         configureNavBar()
         setupAutoCompleteTableView()
         configureCityTableView()
-        setTapGesture()
+        //setTapGesture()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -209,7 +209,7 @@ class FindCityViewController: UIViewController {
     }
     
     @objc private func didTapOnView() {
-        navigationItem.titleView?.endEditing(true)
+        //navigationItem.titleView?.endEditing(true)
     }
 }
 

@@ -17,6 +17,7 @@ class GoogleAddressModel {
     var primaryAddressLine = ""
     var secondaryAddresLine = ""
     var placeID = ""
+    var location: CLLocationCoordinate2D?
     
     //MARK: - Initalizer
     
@@ -25,6 +26,20 @@ class GoogleAddressModel {
         self.primaryAddressLine = model.attributedPrimaryText.string
         self.placeID = model.placeID
         self.secondaryAddresLine = model.attributedSecondaryText?.string ?? ""
+        getLocation(for: model.placeID)
+    }
+    
+    //MARK: - Private methods
+    
+    private func getLocation(for placeID: String) {
+        GMSPlacesClient.shared().fetchPlace(fromPlaceID: placeID, placeFields: .coordinate, sessionToken: GMSAutocompleteSessionToken()) { [weak self] (result, error) in
+            guard let sSelf = self else {
+                return
+            }
+            if error == nil {
+                sSelf.location = result?.coordinate
+            }
+        }
     }
     
 }
