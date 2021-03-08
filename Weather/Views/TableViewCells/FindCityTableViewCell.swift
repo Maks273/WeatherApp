@@ -8,7 +8,24 @@
 
 import UIKit
 
+protocol FindCityCellDelegate: class {
+    func localTime(for timeZone: String) -> String
+    func setTemperature(for indexPath: IndexPath) -> String
+}
+
 class FindCityTableViewCell: UITableViewCell {
+    
+    //MARK: - IBOutlets
+    
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var temperatureLabel: UILabel!
+    
+    //MARK: - Variables
+    
+    unowned var delegate: FindCityCellDelegate!
+    
+    //MARK: - Override
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -18,4 +35,12 @@ class FindCityTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 
+    //MARK: - Helper
+    
+    func configure(model: CityModel, indexPath: IndexPath) {
+        nameLabel.text = model.name
+        timeLabel.text = delegate.localTime(for: model.timeZone ?? "")
+        temperatureLabel.text = delegate.setTemperature(for: indexPath)
+    }
+    
 }

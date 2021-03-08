@@ -9,15 +9,18 @@
 import UIKit
 
 protocol CityForecastConfigurator {
-    func configure(_ viewController: CityForecastViewController)
+    func configure(_ viewController: CityForecastViewController, model: ForecastsModel?)
 }
 
 class CityForecastConfiguratorImplementation: CityForecastConfigurator {
     
-    func configure(_ viewController: CityForecastViewController) {
+    func configure(_ viewController: CityForecastViewController, model: ForecastsModel?) {
         
         let router: CityForecastRouter = CityForecastRouterImplementation(viewController: viewController)
         let presenter: CityForecastPresenter = CityForecastPresenterImplementation(view: viewController, router: router)
+        if let model = model {
+            presenter.setForecastsModel(model)
+        }
         
         viewController.presenter = presenter
     }

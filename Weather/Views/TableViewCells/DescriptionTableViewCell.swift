@@ -26,8 +26,8 @@ class DescriptionTableViewCell: UITableViewCell {
     
     //MARK: - Helper
     
-    
-
-    //MARK: - Private methods
+    func configure(title: String) {
+        infoLabel.text = title
+    }
     
 }

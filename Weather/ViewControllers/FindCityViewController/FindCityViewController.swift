@@ -35,6 +35,7 @@ class FindCityViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupKeyboardObserver()
+        presenter.viewWillAppear()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -47,6 +48,7 @@ class FindCityViewController: UIViewController {
         super.viewWillLayoutSubviews()
         self.view.layer.sublayers?.first?.frame = self.view.layer.bounds
     }
+
     
     //MARK: - Private methods
     
@@ -81,8 +83,8 @@ class FindCityViewController: UIViewController {
     }
     
     private func setupChangeDegreesBtn() {
-        let celsiusBtn = createDegreesBtn(title: "ºC", tag: 0, color: .white)
-        let farengateBtn = createDegreesBtn(title: "ºF", tag: 1, color: .systemGray5)
+        let celsiusBtn = createDegreesBtn(title: "ºC", tag: 0, color: presenter.getTemperaturButtonColor(for: 0))
+        let farengateBtn = createDegreesBtn(title: "ºF", tag: 1, color: presenter.getTemperaturButtonColor(for: 1))
         navigationItem.rightBarButtonItems = [farengateBtn, celsiusBtn]
     }
     
@@ -99,7 +101,19 @@ class FindCityViewController: UIViewController {
     }
     
     @objc private func changeDegreesBtnPressed(sender: UIBarButtonItem) {
-        
+        presenter.changeTemperatureMetric(tag: sender.tag)
+        changeSelectedTemperaturBtnColor()
+        tableView.reloadData()
+    }
+    
+    private func changeSelectedTemperaturBtnColor() {
+        navigationItem.rightBarButtonItems?.forEach({ (button) in
+            let attributes: [NSAttributedString.Key: Any] = [
+                .font: UIFont(name: "HelveticaNeue-Medium", size: 20)!,
+                .foregroundColor: presenter.getTemperaturButtonColor(for: button.tag)
+            ]
+            button.setTitleTextAttributes(attributes, for: .normal)
+        })
     }
     
     private func setupSearchTextField() {
@@ -187,6 +201,7 @@ class FindCityViewController: UIViewController {
             }
         }
     }
+    
 }
 
 //MARK: - FindCityView
@@ -206,6 +221,18 @@ extension FindCityViewController: FindCityView {
     
     func reloadAutoCompleteTableView() {
         autoCompleteTableView.reloadData()
+    }
+    
+    func reloadCityTableView() {
+        tableView.reloadData()
+    }
+    
+    func removeRows(at indexPaths: [IndexPath]) {
+        tableView.deleteRows(at: indexPaths, with: .automatic)
+    }
+    
+    func reloadCells(at indexPaths: [IndexPath]) {
+        tableView.reloadRows(at: indexPaths, with: .automatic)
     }
 }
 
@@ -230,9 +257,15 @@ extension FindCityViewController: UITextFieldDelegate {
 extension FindCityViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if tableView == autoCompleteTableView {
-            presenter.didSelectAutoCompleteCell(at: indexPath)
+        tableView == autoCompleteTableView ? presenter.didSelectAutoCompleteCell(at: indexPath) : presenter.didSelectCityCell(at: indexPath)
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let swipe = UIContextualAction(style: .destructive, title: "") { (action, view, finished) in
+            self.presenter.removeItem(at: indexPath)
         }
+        swipe.image = UIImage(systemName: "xmark.bin.fill")
+        return UISwipeActionsConfiguration(actions: [swipe])
     }
 }
 
@@ -252,9 +285,24 @@ extension FindCityViewController: UITableViewDataSource {
         }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "findCityCell", for: indexPath) as! FindCityTableViewCell
+        cell.delegate = self
+        if let model = presenter.cityModel(for: indexPath.row) {
+            cell.configure(model: model, indexPath: indexPath)
+        }
+        
         cell.backgroundColor = .clear
         
         return cell
     }
     
+}
+
+extension FindCityViewController: FindCityCellDelegate {
+    func setTemperature(for indexPath: IndexPath) -> String {
+        return presenter.getTemperature(for: indexPath.row)
+    }
+    
+    func localTime(for timeZone: String) -> String {
+        return presenter.localTime(for: timeZone)
+    }
 }

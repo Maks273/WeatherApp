@@ -12,6 +12,9 @@ class HourlyForecastCollectionViewCell: UICollectionViewCell {
     
     //MARK: - IBOutlets
     
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var temperatureLabel: UILabel!
     
     //MARK: - override
 
@@ -21,8 +24,10 @@ class HourlyForecastCollectionViewCell: UICollectionViewCell {
     
     //MARK: - Helper
     
-    
-    //MARK: - Private methods
-    
+    func configure(model: ForecastModel, timeZone: String) {
+        timeLabel.text = (model.date ?? Date()).convertDate(with: "ha", timeZone: timeZone)
+        imageView.image = UIImage(named: model.weather.first?.iconName ?? "")
+        temperatureLabel.text = "\(Int(model.currentTemperature?.rounded(.toNearestOrEven) ?? 0))º"
+    }
 
 }

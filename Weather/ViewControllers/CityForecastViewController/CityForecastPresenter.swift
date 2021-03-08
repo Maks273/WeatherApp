@@ -10,14 +10,24 @@ import UIKit
 
 protocol CityForecastView: class {
     func configureCellStyle(for cell: UITableViewCell, hideSeparator: Bool)
+    func configureHeader(model: ForecastsModel)
+    func reloadTableView()
 }
 
 protocol CityForecastPresenter {
     var router: CityForecastRouter {get}
     
+    func viewWillAppear()
     func numberOfRows() -> Int
     func configureCell(_ tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell
     func heightForRow(at indexPath: IndexPath) -> CGFloat
+    func setForecastsModel(_ model: ForecastsModel)
+    func addCity()
+}
+
+struct ConditionForecast {
+    var title: String
+    var value: String
 }
 
 class CityForecastPresenterImplementation: CityForecastPresenter {
@@ -32,6 +42,9 @@ class CityForecastPresenterImplementation: CityForecastPresenter {
     private let forecastInfoCellHeight: CGFloat = 55
     private let hourlyForecastIndexPath = IndexPath(row: 0, section: 0)
     private let descriptionIndexPath = IndexPath(row: 1, section: 0)
+    private var model: ForecastsModel?
+    private var conditionsDataSource: [[ConditionForecast]] = [[]]
+    private var currentCityModel: CityModel?
     
     //MARK: - Initalizer
     
@@ -42,8 +55,12 @@ class CityForecastPresenterImplementation: CityForecastPresenter {
     
     //MARK: - Helper
     
+    func viewWillAppear() {
+        fillViews()
+    }
+    
     func numberOfRows() -> Int {
-        return 5
+        return conditionsDataSource.count + 2
     }
     
     func heightForRow(at indexPath: IndexPath) -> CGFloat {
@@ -64,26 +81,97 @@ class CityForecastPresenterImplementation: CityForecastPresenter {
             return cell
         }else if indexPath == descriptionIndexPath {
             let cell = tableView.dequeueReusableCell(withIdentifier: "descriptionCell", for: indexPath) as! DescriptionTableViewCell
+            cell.configure(title: descriptionCellTitle(partDay: "Today"))
             view.configureCellStyle(for: cell, hideSeparator: false)
             return cell
         }else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "forecastInfoCell", for: indexPath) as! ForecastInfoTableViewCell
+            cell.configure(models: getInfoModels(for: indexPath.row - 2))
             view.configureCellStyle(for: cell, hideSeparator: false)
             return cell
         }
     }
     
+    func setForecastsModel(_ model: ForecastsModel) {
+        self.model = model
+    }
+    
+    func addCity() {
+        var cityDataSource = UserDefaultsService.shared.loadCityDataSource()
+        if let currentCityModel = currentCityModel {
+            if let cityID = currentCityModel.id, !cityDataSource.contains(where: {$0.id == cityID}) {
+                cityDataSource.append(currentCityModel)
+                UserDefaultsService.shared.saveCityDataSource(cityDataSource)
+            }
+        }
+    }
+    
+    
+    //MARK: - Private methods
+    
+    private func fillViews() {
+        guard let model = model else {
+            return
+        }
+        
+        view.configureHeader(model: model)
+        fillConditionsDataSource()
+        view.reloadTableView()
+        currentCityModel = CityModel(name: model.cityName, timeZone: model.timezone, lat: model.lat, lng: model.lon, id: model.cityId)
+    }
+    
+    private func fillConditionsDataSource() {
+        guard let currentForecast = self.model?.current, let timeZone = model?.timezone else {
+            return
+        }
+        
+        conditionsDataSource = [
+            [ConditionForecast(title: "SUNRICE", value: (currentForecast.sunrise ?? Date()).convertDate(with: "h:mm a", timeZone: timeZone)),
+             ConditionForecast(title: "SUNSET", value: (currentForecast.sunset ?? Date()).convertDate(with: "h:mm a", timeZone: timeZone))],
+            [ConditionForecast(title: "HUMIDITY", value: "\(currentForecast.humidity ?? 0)%"),
+             ConditionForecast(title: "PRESSURE", value: "\(currentForecast.pressure ?? 0) hPa")],
+            [ConditionForecast(title: "FEELS LIKE", value: "\(Int(currentForecast.feelsLikeCurrent?.rounded(.toNearestOrEven) ?? 0))º"),
+             ConditionForecast(title: "VISIBILITY", value: "\((currentForecast.visibility ?? 0)/1000) km")],
+            [ConditionForecast(title: "UV INDEX", value: "\(currentForecast.uvi ?? 0)"),
+             ConditionForecast(title: "WIND", value: "\(windDirectionFromDegrees(currentForecast.windDegrees ?? 0)) \(currentForecast.windSpeed ?? 0) m/s")]
+        ]
+        
+    }
+    
+    private func descriptionCellTitle(partDay: String) -> String {
+        return "\(partDay): \(model?.current?.weather.first?.description?.capitalized ?? ""). The high will be \(Int(model?.daily.first?.temperature?.max?.rounded(.toNearestOrEven) ?? 0))º. Tonight with a low of \(Int(model?.daily.first?.temperature?.night?.rounded(.toNearestOrEven) ?? 0))º."
+    }
+    
+    private func getInfoModels(for index: Int) -> [ConditionForecast] {
+        return index < conditionsDataSource.count ? conditionsDataSource[index] : []
+    }
+    
+    private func windDirectionFromDegrees(_ degrees : Double) -> String {
+        let directions = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"]
+        let i: Int = Int((degrees + 11.25)/22.5)
+        return directions[i % 16]
+    }
+    
+    private func getHourlyModel(for index: Int) -> ForecastModel? {
+        guard let hourlyModels = model?.hourly else {
+            return nil
+        }
+        return index < hourlyModels.count ? hourlyModels[index] : nil
+    }
 }
 
 //MARK: - HourlyForecastDelegate
 
 extension CityForecastPresenterImplementation: HourlyForecastDelegate {
     func numberOfItems() -> Int {
-        return 7
+        return model?.hourly.count ?? 0
     }
     
     func configureCell(_ collectionView: UICollectionView, at indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "hourlyCollectionCell", for: indexPath) as! HourlyForecastCollectionViewCell
+        if let model = getHourlyModel(for: indexPath.item), let timeZone = self.model?.timezone {
+            cell.configure(model: model, timeZone: timeZone)
+        }
         return cell
     }
 }
