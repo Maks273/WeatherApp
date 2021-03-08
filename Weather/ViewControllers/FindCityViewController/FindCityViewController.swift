@@ -30,7 +30,6 @@ class FindCityViewController: UIViewController {
         configureNavBar()
         setupAutoCompleteTableView()
         configureCityTableView()
-        //setTapGesture()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -203,16 +202,6 @@ class FindCityViewController: UIViewController {
         }
     }
     
-    //MARK: Tap gesture
-    
-    private func setTapGesture() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapOnView))
-        self.view.addGestureRecognizer(tap)
-    }
-    
-    @objc private func didTapOnView() {
-        //navigationItem.titleView?.endEditing(true)
-    }
 }
 
 //MARK: - FindCityView

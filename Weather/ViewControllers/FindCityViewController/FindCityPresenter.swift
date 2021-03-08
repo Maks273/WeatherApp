@@ -49,7 +49,6 @@ class FindCityPresenterImplementation: FindCityPresenter {
     var router: FindCityRouter
     private var autoCompleteDataSource: [GoogleAddressModel] = []
     private let autoCompleteCellHeight: CGFloat = 46
-    private let cities: [String] = ["",""]
     private var cityDataSource: [CityModel] = []
     private var forecastDataSource: [ForecastsModel] = []
     
