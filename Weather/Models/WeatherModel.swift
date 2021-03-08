@@ -10,6 +10,8 @@ import UIKit
 
 class WeatherModel: Codable {
     
+    //MARK: - Variables
+    
     var description: String?
     var main: String?
     var iconName: String?
@@ -19,6 +21,8 @@ class WeatherModel: Codable {
         case description, id, main
         case iconName = "icon"
     }
+    
+    //MARK: - Initalizers
     
     required init(from decoder: Decoder) throws {
         do {

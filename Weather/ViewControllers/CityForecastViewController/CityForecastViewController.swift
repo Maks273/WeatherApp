@@ -12,8 +12,10 @@ class CityForecastViewController: UIViewController {
     
     //MARK: - IBOutlets
     
-    @IBOutlet weak var headerView: TodayForecastHeader!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var headerView: TodayForecastHeader!
+    @IBOutlet weak var addViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var addView: UIView!
     
     //MARK: - Variables
     
@@ -24,12 +26,16 @@ class CityForecastViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configurator.configure(self)
         setupGradientBgColor()
         configureNavBar()
         configureTableView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter.viewWillAppear()
+        changeAddViewHeight(isHidden: self.navigationController?.isNavigationBarHidden ?? true)
+    }
     
     //MARK: - Helper
     
@@ -38,6 +44,16 @@ class CityForecastViewController: UIViewController {
         self.view.layer.sublayers?.first?.frame = self.view.layer.bounds
     }
     
+    //MARK: - IBActions
+    
+    @IBAction func cancelBtnPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func addBtnPressed(_ sender: Any) {
+        presenter.addCity()
+        dismiss(animated: true, completion: nil)
+    }
     
     //MARK: - Private methods
     
@@ -93,6 +109,11 @@ class CityForecastViewController: UIViewController {
         tableView.tableFooterView = UIView()
         headerView.delegate = self
     }
+    
+    private func changeAddViewHeight(isHidden: Bool) {
+        addView.isHidden = !isHidden
+        addViewHeightConstraint.constant = isHidden ? 40 : 0
+    }
 
 
 }
@@ -104,6 +125,14 @@ extension CityForecastViewController: CityForecastView {
     func configureCellStyle(for cell: UITableViewCell, hideSeparator: Bool) {
         cell.separatorInset = UIEdgeInsets(top: 0, left: hideSeparator ? 0 : 12, bottom: 0, right: hideSeparator ? 1000 : 12)
         cell.backgroundColor = .clear
+    }
+    
+    func configureHeader(model: ForecastsModel) {
+        headerView.configure(model: model)
+    }
+    
+    func reloadTableView() {
+        tableView.reloadData()
     }
 }
 

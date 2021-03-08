@@ -12,18 +12,21 @@ import GooglePlaces
 enum TemperatureMetrics: String {
     case celsius = "metric"
     case fahrenheit = "imperial"
-    
 }
 
 protocol FindCityView: class {
     func changeAutoCompleteHeight(constant: CGFloat)
     func hideAutoCompleteTable(isHidden: Bool)
     func reloadAutoCompleteTableView()
+    func reloadCityTableView()
+    func removeRows(at indexPaths: [IndexPath])
+    func reloadCells(at indexPaths: [IndexPath])
 }
 
 protocol FindCityPresenter {
     var router: FindCityRouter {get}
     
+    func viewWillAppear()
     func findCity(searchText: String)
     func numberOfAutoCompleteRows() -> Int
     func title(for indexPath: IndexPath) -> String?
@@ -31,6 +34,11 @@ protocol FindCityPresenter {
     func numberOfCitiesRows() -> Int
     func getTemperaturButtonColor(for tag: Int) -> UIColor
     func changeTemperatureMetric(tag: Int)
+    func cityModel(for index: Int) -> CityModel?
+    func localTime(for timeZone: String) -> String
+    func removeItem(at indexPath: IndexPath)
+    func getTemperature(for index: Int) -> String
+    func didSelectCityCell(at indexPath: IndexPath)
 }
 
 class FindCityPresenterImplementation: FindCityPresenter {
@@ -42,6 +50,8 @@ class FindCityPresenterImplementation: FindCityPresenter {
     private var autoCompleteDataSource: [GoogleAddressModel] = []
     private let autoCompleteCellHeight: CGFloat = 46
     private let cities: [String] = ["",""]
+    private var cityDataSource: [CityModel] = []
+    private var forecastDataSource: [ForecastsModel] = []
     
     //MARK: - Initalizer
     
@@ -52,16 +62,21 @@ class FindCityPresenterImplementation: FindCityPresenter {
     
     //MARK: - Helper
     
+    func viewWillAppear() {
+        loadCityDataSource()
+        loadForecastModels()
+    }
+    
     func findCity(searchText: String) {
         
         autoCompleteDataSource = []
         let filter = GMSAutocompleteFilter()
-        filter.type = .region
+        filter.type = .city
         
         GMSPlacesClient.shared().findAutocompletePredictions(fromQuery: searchText, filter: filter, sessionToken: GMSAutocompleteSessionToken()) { [weak self] (results, error) in
             
             guard let sSelf = self else { return }
-        
+            
             if error == nil {
                 results?.forEach{ sSelf.autoCompleteDataSource.append(GoogleAddressModel(model: $0))}
                 DispatchQueue.main.async {
@@ -76,6 +91,8 @@ class FindCityPresenterImplementation: FindCityPresenter {
         }
     }
     
+    //MARK: AutoComplete
+    
     func numberOfAutoCompleteRows() -> Int {
         return autoCompleteDataSource.count
     }
@@ -88,23 +105,25 @@ class FindCityPresenterImplementation: FindCityPresenter {
         guard let currentPlaceModel = getPlaceModel(for: indexPath.row) else {
             return
         }
-    
+        
         if let location = currentPlaceModel.location {
-            ApiService.shared.getCurrentWeather(location: location) { (error, result) in
-                if let error = error {
-                    print("ERROR = ", error.localizedDescription)
-                }else {
-                    print(result)
+            ApiService.shared.getCurrentWeather(location: location) { [weak self] (error, result) in
+                guard let sSelf = self, let model = result else {
+                    print("ERROR = ", error?.localizedDescription)
+                    return
                 }
+                model.cityName = currentPlaceModel.primaryAddressLine
+                model.cityId = currentPlaceModel.placeID
+                sSelf.router.showCityForecastScreen(with: model, showAsModal: true)
             }
         }
         
     }
     
-    //MARK: Find city
+    //MARK: City
     
     func numberOfCitiesRows() -> Int {
-        return cities.count
+        return cityDataSource.count
     }
     
     func changeTemperatureMetric(tag: Int) {
@@ -114,6 +133,30 @@ class FindCityPresenterImplementation: FindCityPresenter {
     func getTemperaturButtonColor(for tag: Int) -> UIColor {
         return UserDefaultsService.shared.getTemperatureMetric() == TemperatureMetrics.celsius.rawValue && tag == 0 ||
             UserDefaultsService.shared.getTemperatureMetric() == TemperatureMetrics.fahrenheit.rawValue && tag == 1 ? .white : .systemGray5
+    }
+    
+    func cityModel(for index: Int) -> CityModel? {
+        return index < cityDataSource.count ? cityDataSource[index] : nil
+    }
+    
+    func localTime(for timeZone: String) -> String {
+        return Date().convertDate(with: "h:mm a", timeZone: timeZone)
+    }
+    
+    func removeItem(at indexPath: IndexPath) {
+        cityDataSource.remove(at: indexPath.row)
+        saveCityDataSource()
+        view.removeRows(at: [indexPath])
+    }
+    
+    func getTemperature(for index: Int) -> String {
+        return index < forecastDataSource.count ? "\(Int(forecastDataSource[index].current?.currentTemperature?.rounded(.toNearestOrEven) ?? 0))º" : ""
+    }
+    
+    func didSelectCityCell(at indexPath: IndexPath) {
+        if indexPath.row < forecastDataSource.count {
+            router.showCityForecastScreen(with: forecastDataSource[indexPath.row], showAsModal: false)
+        }
     }
     
     
@@ -131,5 +174,42 @@ class FindCityPresenterImplementation: FindCityPresenter {
         return Int(degrees * 1.8 + 32)
     }
     
+    private func loadCityDataSource() {
+        cityDataSource = UserDefaultsService.shared.loadCityDataSource()
+        view.reloadCityTableView()
+    }
     
+    private func saveCityDataSource() {
+        UserDefaultsService.shared.saveCityDataSource(cityDataSource)
+    }
+    
+    private func loadForecastModels() {
+        fillMockForecastModels()
+        for (index, city) in cityDataSource.enumerated() {
+            guard let lat = city.lat, let lon = city.lng else {
+                return
+            }
+            loadForecast(for: CLLocationCoordinate2D(latitude: lat, longitude: lon), index: index)
+        }
+    }
+    
+    private func fillMockForecastModels() {
+        for _ in 0..<cityDataSource.count {
+            forecastDataSource.append(ForecastsModel())
+        }
+    }
+    
+    private func loadForecast(for location: CLLocationCoordinate2D, index: Int) {
+        ApiService.shared.getCurrentWeather(location: location) { [weak self] (error, model) in
+            guard let sSelf = self, let model = model else {
+                return
+            }
+            model.cityName = sSelf.cityDataSource[index].name
+            sSelf.forecastDataSource[index] = model
+            DispatchQueue.main.async {
+                sSelf.view.reloadCells(at: [IndexPath(row: index, section: 0)])
+            }
+        }
+    }
 }
+

@@ -10,12 +10,25 @@ import UIKit
 
 class ForecastsModel: Codable {
     
+    //MARK: - Variables
+    
     var current: ForecastModel?
     var daily: [ForecastModel] = []
     var timezone: String?
+    var cityName: String?
+    var hourly: [ForecastModel] = []
+    var lat: Double?
+    var lon: Double?
+    var cityId: String?
     
     enum CodingKeys: String, CodingKey {
-        case current, timezone, daily
+        case current, timezone, daily, hourly, lat, lon
+    }
+    
+    //MARK: - Initalizers
+    
+    init() {
+        
     }
     
     required init(from decoder: Decoder) throws {
@@ -24,6 +37,9 @@ class ForecastsModel: Codable {
             current = try? container.decode(ForecastModel.self, forKey: .current)
             daily = try container.decode([ForecastModel].self, forKey: .daily)
             timezone = try? container.decodeIfPresent(String.self, forKey: .timezone)
+            hourly = try container.decode([ForecastModel].self, forKey: .hourly)
+            lat = try? container.decodeIfPresent(Double.self, forKey: .lat)
+            lon = try? container.decodeIfPresent(Double.self, forKey: .lon)
         }catch(let error) {
             NSLog("Decode error \(error.localizedDescription)")
         }

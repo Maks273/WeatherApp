@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="H8P-4R-GQG">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="148" width="414" height="748"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="4Q2-19-RSb" customClass="TodayForecastHeader" customModule="Weather" customModuleProvider="target">
@@ -95,19 +95,59 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sYY-bo-WVJ">
+                                <rect key="frame" x="0.0" y="88" width="414" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dp4-Pu-al9">
+                                        <rect key="frame" x="12" y="10" width="56" height="50"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cancelBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0ER-Ja-dYB"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p1c-qy-09f">
+                                        <rect key="frame" x="367" y="10" width="35" height="50"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="18"/>
+                                        <state key="normal" title="Add">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="addBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="d5m-2W-MSW"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="7kR-tW-6nQ"/>
+                                    <constraint firstItem="dp4-Pu-al9" firstAttribute="top" secondItem="sYY-bo-WVJ" secondAttribute="top" constant="10" id="BVX-H4-mVb"/>
+                                    <constraint firstAttribute="trailing" secondItem="p1c-qy-09f" secondAttribute="trailing" constant="12" id="Jff-08-1bu"/>
+                                    <constraint firstAttribute="bottom" secondItem="p1c-qy-09f" secondAttribute="bottom" id="Zc0-Dj-AbQ"/>
+                                    <constraint firstAttribute="bottom" secondItem="dp4-Pu-al9" secondAttribute="bottom" id="gGy-Rj-2Bb"/>
+                                    <constraint firstItem="p1c-qy-09f" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dp4-Pu-al9" secondAttribute="trailing" constant="10" id="juP-H4-MYL"/>
+                                    <constraint firstItem="dp4-Pu-al9" firstAttribute="leading" secondItem="sYY-bo-WVJ" secondAttribute="leading" constant="12" id="p84-hR-p0r"/>
+                                    <constraint firstItem="p1c-qy-09f" firstAttribute="top" secondItem="sYY-bo-WVJ" secondAttribute="top" constant="10" id="ypN-sl-goR"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="H8P-4R-GQG" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="2rK-WB-Wh7"/>
+                            <constraint firstItem="sYY-bo-WVJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Blh-dI-d8I"/>
+                            <constraint firstItem="sYY-bo-WVJ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="I3y-eA-S2q"/>
                             <constraint firstItem="H8P-4R-GQG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="UWr-Di-C85"/>
-                            <constraint firstItem="H8P-4R-GQG" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="c8j-iF-7wa"/>
+                            <constraint firstItem="sYY-bo-WVJ" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="fYQ-5G-3Fm"/>
                             <constraint firstAttribute="bottom" secondItem="H8P-4R-GQG" secondAttribute="bottom" id="ker-YH-knF"/>
+                            <constraint firstItem="H8P-4R-GQG" firstAttribute="top" secondItem="sYY-bo-WVJ" secondAttribute="bottom" id="vIf-8R-Lch"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Yuo-T3-daA"/>
                     <connections>
-                        <outlet property="headerView" destination="4Q2-19-RSb" id="SdF-HF-rXH"/>
+                        <outlet property="addView" destination="sYY-bo-WVJ" id="mhA-Ie-bcC"/>
+                        <outlet property="addViewHeightConstraint" destination="7kR-tW-6nQ" id="5Sg-Gb-z4H"/>
+                        <outlet property="headerView" destination="4Q2-19-RSb" id="aIW-ry-qNs"/>
                         <outlet property="tableView" destination="H8P-4R-GQG" id="GHc-Lt-6uG"/>
                     </connections>
                 </viewController>
@@ -211,6 +251,11 @@
                                                 <constraint firstItem="Mq5-HE-n4u" firstAttribute="top" secondItem="zam-5F-jKr" secondAttribute="top" id="n9D-p5-n3y"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="nameLabel" destination="zGv-aI-BLD" id="QFA-3x-AE6"/>
+                                            <outlet property="temperatureLabel" destination="aNl-JO-Cow" id="uVQ-1S-tqG"/>
+                                            <outlet property="timeLabel" destination="XTK-Cz-mQA" id="WWB-Y3-rM2"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

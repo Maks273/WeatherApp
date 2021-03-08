@@ -10,6 +10,8 @@ import UIKit
 
 class FeelsLike: Codable {
     
+    //MARK: - Variables
+    
     var day: Double?
     var eve: Double?
     var morn: Double?
@@ -18,6 +20,8 @@ class FeelsLike: Codable {
     enum CodingKeys: String, CodingKey {
         case day, eve, morn, night
     }
+    
+    //MARK: - Initalizers
     
     required init(from decoder: Decoder) throws {
         do {

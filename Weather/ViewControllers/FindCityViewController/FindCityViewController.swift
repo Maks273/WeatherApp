@@ -36,6 +36,7 @@ class FindCityViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupKeyboardObserver()
+        presenter.viewWillAppear()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -48,6 +49,7 @@ class FindCityViewController: UIViewController {
         super.viewWillLayoutSubviews()
         self.view.layer.sublayers?.first?.frame = self.view.layer.bounds
     }
+
     
     //MARK: - Private methods
     
@@ -231,6 +233,18 @@ extension FindCityViewController: FindCityView {
     func reloadAutoCompleteTableView() {
         autoCompleteTableView.reloadData()
     }
+    
+    func reloadCityTableView() {
+        tableView.reloadData()
+    }
+    
+    func removeRows(at indexPaths: [IndexPath]) {
+        tableView.deleteRows(at: indexPaths, with: .automatic)
+    }
+    
+    func reloadCells(at indexPaths: [IndexPath]) {
+        tableView.reloadRows(at: indexPaths, with: .automatic)
+    }
 }
 
 extension FindCityViewController: UITextFieldDelegate {
@@ -254,9 +268,15 @@ extension FindCityViewController: UITextFieldDelegate {
 extension FindCityViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if tableView == autoCompleteTableView {
-            presenter.didSelectAutoCompleteCell(at: indexPath)
+        tableView == autoCompleteTableView ? presenter.didSelectAutoCompleteCell(at: indexPath) : presenter.didSelectCityCell(at: indexPath)
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let swipe = UIContextualAction(style: .destructive, title: "") { (action, view, finished) in
+            self.presenter.removeItem(at: indexPath)
         }
+        swipe.image = UIImage(systemName: "xmark.bin.fill")
+        return UISwipeActionsConfiguration(actions: [swipe])
     }
 }
 
@@ -276,9 +296,24 @@ extension FindCityViewController: UITableViewDataSource {
         }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "findCityCell", for: indexPath) as! FindCityTableViewCell
+        cell.delegate = self
+        if let model = presenter.cityModel(for: indexPath.row) {
+            cell.configure(model: model, indexPath: indexPath)
+        }
+        
         cell.backgroundColor = .clear
         
         return cell
     }
     
+}
+
+extension FindCityViewController: FindCityCellDelegate {
+    func setTemperature(for indexPath: IndexPath) -> String {
+        return presenter.getTemperature(for: indexPath.row)
+    }
+    
+    func localTime(for timeZone: String) -> String {
+        return presenter.localTime(for: timeZone)
+    }
 }

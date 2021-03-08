@@ -10,6 +10,8 @@ import UIKit
 
 class Temperature: Codable {
     
+    //MARK: - Variables
+    
     var day: Double?
     var eve: Double?
     var max: Double?
@@ -20,6 +22,8 @@ class Temperature: Codable {
     enum CodingKeys: String, CodingKey {
         case day, eve, max, min, morn, night
     }
+    
+    //MARK: - Initalizers
     
     required init(from decoder: Decoder) throws {
         do {
