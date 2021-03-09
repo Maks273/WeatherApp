@@ -22,6 +22,7 @@ class CityForecastViewController: UIViewController {
     
     var presenter: CityForecastPresenter!
     let configurator: CityForecastConfigurator = CityForecastConfiguratorImplementation()
+    var loadCurrentLocation: Bool = true
     private let locationManager = CLLocationManager()
     
     //MARK: - Life cycles
@@ -38,7 +39,7 @@ class CityForecastViewController: UIViewController {
         super.viewWillAppear(animated)
         presenter.viewWillAppear()
         changeAddViewHeight(isHidden: self.navigationController?.isNavigationBarHidden ?? true)
-        if self.navigationController?.isNavigationBarHidden == false {
+        if self.navigationController?.isNavigationBarHidden == false && loadCurrentLocation {
             validateAndRequesteLocation()
         }
     }
@@ -121,7 +122,7 @@ class CityForecastViewController: UIViewController {
     }
     
     private func configureLocationManager() {
-        if self.navigationController?.isNavigationBarHidden == false {
+        if self.navigationController?.isNavigationBarHidden == false && loadCurrentLocation {
             locationManager.delegate = self
             locationManager.requestWhenInUseAuthorization()
         }
