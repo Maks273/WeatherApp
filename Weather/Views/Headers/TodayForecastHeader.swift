@@ -53,6 +53,7 @@ class TodayForecastHeader: UIView {
         cityLabel.text = model.cityName
         highTempLabel.text = "H: \(Int(model.daily.first?.temperature?.max?.rounded(.toNearestOrEven) ?? 0))"
         lowTempLabel.text = "L: \(Int(model.daily.first?.temperature?.min?.rounded(.toNearestOrEven) ?? 0))"
+        containerView.isHidden = false
     }
     
     

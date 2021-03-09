@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import CoreLocation
+import GooglePlaces
 
 protocol CityForecastView: class {
     func configureCellStyle(for cell: UITableViewCell, hideSeparator: Bool)
@@ -23,6 +25,8 @@ protocol CityForecastPresenter {
     func heightForRow(at indexPath: IndexPath) -> CGFloat
     func setForecastsModel(_ model: ForecastsModel)
     func addCity()
+    func loadForecast(for location: CLLocationCoordinate2D)
+    func loadCityName(by location: CLLocation)
 }
 
 struct ConditionForecast {
@@ -45,6 +49,7 @@ class CityForecastPresenterImplementation: CityForecastPresenter {
     private var model: ForecastsModel?
     private var conditionsDataSource: [[ConditionForecast]] = [[]]
     private var currentCityModel: CityModel?
+    private var cityName: String?
     
     //MARK: - Initalizer
     
@@ -60,7 +65,7 @@ class CityForecastPresenterImplementation: CityForecastPresenter {
     }
     
     func numberOfRows() -> Int {
-        return conditionsDataSource.count + 2
+        return model == nil ? 0 : conditionsDataSource.count + 2
     }
     
     func heightForRow(at indexPath: IndexPath) -> CGFloat {
@@ -78,6 +83,7 @@ class CityForecastPresenterImplementation: CityForecastPresenter {
             let cell = tableView.dequeueReusableCell(withIdentifier: "hourlyTableCell", for: indexPath) as! HourlyForecastTableViewCell
             view.configureCellStyle(for: cell, hideSeparator: true)
             cell.delegate = self
+            cell.hourlyForecastCollectionView.reloadData()
             return cell
         }else if indexPath == descriptionIndexPath {
             let cell = tableView.dequeueReusableCell(withIdentifier: "descriptionCell", for: indexPath) as! DescriptionTableViewCell
@@ -106,6 +112,33 @@ class CityForecastPresenterImplementation: CityForecastPresenter {
         }
     }
     
+    func loadForecast(for location: CLLocationCoordinate2D) {
+        ApiService.shared.getCurrentWeather(location: location) { [weak self] (error, model) in
+            guard let sSelf = self, let model = model else {
+                return
+            }
+            sSelf.model = model
+            sSelf.model?.cityName = sSelf.cityName
+            DispatchQueue.main.async {
+                sSelf.fillViews()
+            }
+        }
+    }
+    
+    func loadCityName(by location: CLLocation) {
+        CLGeocoder().reverseGeocodeLocation(location) { [weak self] (placeMarks, error) in
+            guard let sSelf = self, error == nil, let placeMark = placeMarks?.first else {
+                return
+            }
+            sSelf.cityName = placeMark.locality
+            sSelf.model?.cityName = placeMark.locality
+            DispatchQueue.main.async {
+                if let model = sSelf.model {
+                    sSelf.view.configureHeader(model: model)
+                }
+            }
+        }
+    }
     
     //MARK: - Private methods
     
@@ -158,6 +191,7 @@ class CityForecastPresenterImplementation: CityForecastPresenter {
         }
         return index < hourlyModels.count ? hourlyModels[index] : nil
     }
+    
 }
 
 //MARK: - HourlyForecastDelegate
