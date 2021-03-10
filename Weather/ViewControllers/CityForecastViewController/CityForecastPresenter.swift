@@ -12,7 +12,7 @@ import GooglePlaces
 
 protocol CityForecastView: class {
     func configureCellStyle(for cell: UITableViewCell, hideSeparator: Bool)
-    func configureHeader(model: ForecastsModel)
+    func configureHeader(model: ForecastsModel, isToday: Bool)
     func reloadTableView()
 }
 
@@ -27,6 +27,7 @@ protocol CityForecastPresenter {
     func addCity()
     func loadForecast(for location: CLLocationCoordinate2D)
     func loadCityName(by location: CLLocation)
+    func changeForecastModel(isToday: Bool)
 }
 
 struct ConditionForecast {
@@ -50,6 +51,8 @@ class CityForecastPresenterImplementation: CityForecastPresenter {
     private var conditionsDataSource: [[ConditionForecast]] = [[]]
     private var currentCityModel: CityModel?
     private var cityName: String?
+    private var isToday: Bool = true
+    private var hourlyForecastDataSource: [ForecastModel] = []
     
     //MARK: - Initalizer
     
@@ -87,7 +90,7 @@ class CityForecastPresenterImplementation: CityForecastPresenter {
             return cell
         }else if indexPath == descriptionIndexPath {
             let cell = tableView.dequeueReusableCell(withIdentifier: "descriptionCell", for: indexPath) as! DescriptionTableViewCell
-            cell.configure(title: descriptionCellTitle(partDay: "Today"))
+            cell.configure(title: descriptionCellTitle(partDay: isToday ? "Today" : "Tomorrow"))
             view.configureCellStyle(for: cell, hideSeparator: false)
             return cell
         }else {
@@ -134,10 +137,15 @@ class CityForecastPresenterImplementation: CityForecastPresenter {
             sSelf.model?.cityName = placeMark.locality
             DispatchQueue.main.async {
                 if let model = sSelf.model {
-                    sSelf.view.configureHeader(model: model)
+                    sSelf.view.configureHeader(model: model, isToday: sSelf.isToday)
                 }
             }
         }
+    }
+    
+    func changeForecastModel(isToday: Bool) {
+        self.isToday = isToday
+        fillViews()
     }
     
     //MARK: - Private methods
@@ -147,32 +155,36 @@ class CityForecastPresenterImplementation: CityForecastPresenter {
             return
         }
         
-        view.configureHeader(model: model)
+        view.configureHeader(model: model, isToday: isToday)
         fillConditionsDataSource()
+        configureHourlyDataSource()
         view.reloadTableView()
         currentCityModel = CityModel(name: model.cityName, timeZone: model.timezone, lat: model.lat, lng: model.lon, id: model.cityId)
     }
     
     private func fillConditionsDataSource() {
-        guard let currentForecast = self.model?.current, let timeZone = model?.timezone else {
+        guard let currentForecast = self.model?.current, let timeZone = model?.timezone, let model = model else {
             return
         }
         
+        let forecastModel = isToday ? currentForecast : model.daily[1]
+        
         conditionsDataSource = [
-            [ConditionForecast(title: "SUNRICE", value: (currentForecast.sunrise ?? Date()).convertDate(with: "h:mm a", timeZone: timeZone)),
-             ConditionForecast(title: "SUNSET", value: (currentForecast.sunset ?? Date()).convertDate(with: "h:mm a", timeZone: timeZone))],
-            [ConditionForecast(title: "HUMIDITY", value: "\(currentForecast.humidity ?? 0)%"),
-             ConditionForecast(title: "PRESSURE", value: "\(currentForecast.pressure ?? 0) hPa")],
-            [ConditionForecast(title: "FEELS LIKE", value: "\(Int(currentForecast.feelsLikeCurrent?.rounded(.toNearestOrEven) ?? 0))º"),
-             ConditionForecast(title: "VISIBILITY", value: "\((currentForecast.visibility ?? 0)/1000) km")],
-            [ConditionForecast(title: "UV INDEX", value: "\(currentForecast.uvi ?? 0)"),
-             ConditionForecast(title: "WIND", value: "\(windDirectionFromDegrees(currentForecast.windDegrees ?? 0)) \(currentForecast.windSpeed ?? 0) m/s")]
+            [ConditionForecast(title: "SUNRICE", value: (forecastModel.sunrise ?? Date()).convertDate(with: "h:mm a", timeZone: timeZone)),
+             ConditionForecast(title: "SUNSET", value: (forecastModel.sunset ?? Date()).convertDate(with: "h:mm a", timeZone: timeZone))],
+            [ConditionForecast(title: "HUMIDITY", value: "\(forecastModel.humidity ?? 0)%"),
+             ConditionForecast(title: "PRESSURE", value: "\(forecastModel.pressure ?? 0) hPa")],
+            [ConditionForecast(title: "FEELS LIKE", value: "\(Int(forecastModel.feelsLikeCurrent?.rounded(.toNearestOrEven) ?? 0))º"),
+             ConditionForecast(title: "VISIBILITY", value: "\((forecastModel.visibility ?? 0)/1000) km")],
+            [ConditionForecast(title: "UV INDEX", value: "\(forecastModel.uvi ?? 0)"),
+             ConditionForecast(title: "WIND", value: "\(windDirectionFromDegrees(forecastModel.windDegrees ?? 0)) \(forecastModel.windSpeed ?? 0) m/s")]
         ]
         
     }
     
     private func descriptionCellTitle(partDay: String) -> String {
-        return "\(partDay): \(model?.current?.weather.first?.description?.capitalized ?? ""). The high will be \(Int(model?.daily.first?.temperature?.max?.rounded(.toNearestOrEven) ?? 0))º. Tonight with a low of \(Int(model?.daily.first?.temperature?.night?.rounded(.toNearestOrEven) ?? 0))º."
+        let forecastModel = isToday ? model?.current : model?.daily[1]
+        return "\(partDay): \(forecastModel?.weather.first?.description?.capitalized ?? ""). The high will be \(Int(forecastModel?.temperature?.max?.rounded(.toNearestOrEven) ?? 0))º, the low will be \(Int(forecastModel?.temperature?.night?.rounded(.toNearestOrEven) ?? 0))º."
     }
     
     private func getInfoModels(for index: Int) -> [ConditionForecast] {
@@ -186,10 +198,34 @@ class CityForecastPresenterImplementation: CityForecastPresenter {
     }
     
     private func getHourlyModel(for index: Int) -> ForecastModel? {
-        guard let hourlyModels = model?.hourly else {
-            return nil
+        return index < hourlyForecastDataSource.count ? hourlyForecastDataSource[index] : nil
+    }
+    
+    private func configureHourlyDataSource() {
+        guard let model = model, !isToday, let midnightIndex = midnightIndex(in: model) else {
+            hourlyForecastDataSource = self.model?.hourly ?? []
+            return
         }
-        return index < hourlyModels.count ? hourlyModels[index] : nil
+        
+        var tempDataSource: [ForecastModel] = []
+        
+        for (index, model) in model.hourly.enumerated() {
+            if index >= midnightIndex {
+                tempDataSource.append(model)
+            }
+        }
+
+        hourlyForecastDataSource = tempDataSource
+    }
+    
+    private func midnightIndex(in model: ForecastsModel) -> Int? {
+        for (index, hourModel) in model.hourly.enumerated() {
+            let dateString = (hourModel.date ?? Date()).convertDate(with: "ha", timeZone: model.timezone ?? "")
+            if dateString == "12AM" {
+                return index
+            }
+        }
+        return nil
     }
     
 }
@@ -198,7 +234,7 @@ class CityForecastPresenterImplementation: CityForecastPresenter {
 
 extension CityForecastPresenterImplementation: HourlyForecastDelegate {
     func numberOfItems() -> Int {
-        return model?.hourly.count ?? 0
+        return hourlyForecastDataSource.count
     }
     
     func configureCell(_ collectionView: UICollectionView, at indexPath: IndexPath) -> UICollectionViewCell {

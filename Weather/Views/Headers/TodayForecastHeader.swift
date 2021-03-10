@@ -10,6 +10,7 @@ import UIKit
 
 protocol TodayForecastDelegate: class {
     func showNextDaysScreen()
+    func changeForecastModel(isToday: Bool)
 }
 
 class TodayForecastHeader: UIView {
@@ -24,6 +25,7 @@ class TodayForecastHeader: UIView {
     @IBOutlet weak var lowTempLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var dayLabel: UILabel!
+    @IBOutlet var indicatorsView: [UIView]!
     
     //MARK: - Variables
     
@@ -43,16 +45,19 @@ class TodayForecastHeader: UIView {
     
     //MARK: - Helper
     
-    func configure(model: ForecastsModel) {
-        guard let currentForecast = model.current else {
+    func configure(model: ForecastsModel, isToday: Bool) {
+        guard let currentForecast = model.current, model.daily.count > 1 else {
             return
         }
-        tempLabel.text = "\(Int(currentForecast.currentTemperature?.rounded(.toNearestOrEven) ?? 0))º"
-        dateLabel.text = (currentForecast.date ?? Date()).convertDate(with: "MMM d, yyyy", timeZone: model.timezone ?? "")
-        imageView.image = UIImage(named: currentForecast.weather.first?.iconName ?? "")
+        let forecastModel = isToday ? currentForecast : model.daily[1]
+        
+        tempLabel.text = "\(Int(forecastModel.currentTemperature?.rounded(.toNearestOrEven) ?? 0))º"
+        dateLabel.text = (forecastModel.date ?? Date()).convertDate(with: "MMM d, yyyy", timeZone: model.timezone ?? "")
+        imageView.image = UIImage(named: forecastModel.weather.first?.iconName ?? "")
         cityLabel.text = model.cityName
-        highTempLabel.text = "H: \(Int(model.daily.first?.temperature?.max?.rounded(.toNearestOrEven) ?? 0))"
-        lowTempLabel.text = "L: \(Int(model.daily.first?.temperature?.min?.rounded(.toNearestOrEven) ?? 0))"
+        highTempLabel.text = "H: \(Int(forecastModel.temperature?.max?.rounded(.toNearestOrEven) ?? 0))"
+        lowTempLabel.text = "L: \(Int(forecastModel.temperature?.min?.rounded(.toNearestOrEven) ?? 0))"
+        dayLabel.text = isToday ? "Today" : "Tomorrow"
         containerView.isHidden = false
     }
     
@@ -63,6 +68,11 @@ class TodayForecastHeader: UIView {
         delegate?.showNextDaysScreen()
     }
     
+    @IBAction func changeDayBtnPressed(_ sender: UIButton) {
+        delegate?.changeForecastModel(isToday: sender.tag == 0)
+        setCurrentIndicator(tag: sender.tag)
+    }
+    
     //MARK: - Private methods
     
     private func commonInit() {
@@ -70,6 +80,12 @@ class TodayForecastHeader: UIView {
         addSubview(containerView)
         containerView.frame = self.bounds
         containerView.autoresizingMask = [.flexibleWidth,.flexibleHeight]
+    }
+    
+    private func setCurrentIndicator(tag: Int) {
+        for (index, view) in indicatorsView.enumerated() {
+            view.isHidden = index != tag
+        }
     }
     
 }

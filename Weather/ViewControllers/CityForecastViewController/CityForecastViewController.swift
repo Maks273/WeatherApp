@@ -162,8 +162,8 @@ extension CityForecastViewController: CityForecastView {
         cell.backgroundColor = .clear
     }
     
-    func configureHeader(model: ForecastsModel) {
-        headerView.configure(model: model)
+    func configureHeader(model: ForecastsModel, isToday: Bool) {
+        headerView.configure(model: model, isToday: isToday)
     }
     
     func reloadTableView() {
@@ -197,6 +197,10 @@ extension CityForecastViewController: UITableViewDelegate {
 extension CityForecastViewController: TodayForecastDelegate {
     func showNextDaysScreen() {
         presenter.router.showNextDaysScreen()
+    }
+    
+    func changeForecastModel(isToday: Bool) {
+        presenter.changeForecastModel(isToday: isToday)
     }
 }
 
