@@ -24,6 +24,7 @@ protocol CityForecastPresenter {
     func configureCell(_ tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell
     func heightForRow(at indexPath: IndexPath) -> CGFloat
     func setForecastsModel(_ model: ForecastsModel)
+    func getForecastsModel() -> ForecastsModel? 
     func addCity()
     func loadForecast(for location: CLLocationCoordinate2D)
     func loadCityName(by location: CLLocation)
@@ -105,6 +106,10 @@ class CityForecastPresenterImplementation: CityForecastPresenter {
         self.model = model
     }
     
+    func getForecastsModel() -> ForecastsModel? {
+        return model
+    }
+    
     func addCity() {
         var cityDataSource = UserDefaultsService.shared.loadCityDataSource()
         if let currentCityModel = currentCityModel {
@@ -177,7 +182,7 @@ class CityForecastPresenterImplementation: CityForecastPresenter {
             [ConditionForecast(title: "FEELS LIKE", value: "\(Int(forecastModel.feelsLikeCurrent?.rounded(.toNearestOrEven) ?? 0))º"),
              ConditionForecast(title: "VISIBILITY", value: "\((forecastModel.visibility ?? 0)/1000) km")],
             [ConditionForecast(title: "UV INDEX", value: "\(forecastModel.uvi ?? 0)"),
-             ConditionForecast(title: "WIND", value: "\(windDirectionFromDegrees(forecastModel.windDegrees ?? 0)) \(forecastModel.windSpeed ?? 0) m/s")]
+             ConditionForecast(title: "WIND", value: "\((forecastModel.windDegrees ?? 0).windDirectionFromDegrees()) \(forecastModel.windSpeed ?? 0) m/s")]
         ]
         
     }
@@ -189,12 +194,6 @@ class CityForecastPresenterImplementation: CityForecastPresenter {
     
     private func getInfoModels(for index: Int) -> [ConditionForecast] {
         return index < conditionsDataSource.count ? conditionsDataSource[index] : []
-    }
-    
-    private func windDirectionFromDegrees(_ degrees : Double) -> String {
-        let directions = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"]
-        let i: Int = Int((degrees + 11.25)/22.5)
-        return directions[i % 16]
     }
     
     private func getHourlyModel(for index: Int) -> ForecastModel? {

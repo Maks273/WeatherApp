@@ -25,7 +25,8 @@ protocol NextDaysPresenter {
 
 struct NextDayCellModel {
     var isExpanded: Bool
-    //and  dataSource
+    var forecastModel: ForecastModel
+    var timezone: String
 }
 
 class NextDaysPresenterImplementation : NextDaysPresenter {
@@ -34,13 +35,15 @@ class NextDaysPresenterImplementation : NextDaysPresenter {
     
     unowned let view: NextDaysView
     let router: NextDaysRouter
+    var model: ForecastsModel?
     private var dataSource: [NextDayCellModel] = []
     
     //MARK: - Initalizer
     
-    init(view: NextDaysView, router: NextDaysRouter) {
+    init(view: NextDaysView, router: NextDaysRouter, model: ForecastsModel) {
         self.view = view
         self.router = router
+        self.model = model
     }
     
     //MARK: - Helper
@@ -50,7 +53,7 @@ class NextDaysPresenterImplementation : NextDaysPresenter {
     }
     
     func title() -> String {
-        return "Uzhhorod, Ukraine"
+        return model?.cityName ?? ""
     }
     
     func numberOfRow() -> Int {
@@ -72,11 +75,14 @@ class NextDaysPresenterImplementation : NextDaysPresenter {
     //MARK: - Private methods
     
     private func fillDataSource() {
-        let test1 = NextDayCellModel(isExpanded: false)
-        let test2 = NextDayCellModel(isExpanded: false)
-        let test3 = NextDayCellModel(isExpanded: false)
+        guard let dailyForecasts = model?.daily, !dailyForecasts.isEmpty else {
+            return
+        }
         
-        dataSource = [test1,test2,test3]
+        dailyForecasts.forEach { (model) in
+            let cellModel = NextDayCellModel(isExpanded: false, forecastModel: model, timezone: self.model?.timezone ?? "")
+            self.dataSource.append(cellModel)
+        }
     }
     
     private func changeExpandedStatus(for indexPath: IndexPath) {

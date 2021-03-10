@@ -9,14 +9,14 @@
 import UIKit
 
 protocol NextDaysConfigurator {
-    func configure(_ viewController: NextDaysViewController)
+    func configure(_ viewController: NextDaysViewController, model: ForecastsModel)
 }
 
 class NextDaysConfiguratorImplementation: NextDaysConfigurator {
     
-    func configure(_ viewController: NextDaysViewController) {
+    func configure(_ viewController: NextDaysViewController, model: ForecastsModel) {
         let router: NextDaysRouter = NextDaysRouterImplementation(viewConttroller: viewController)
-        let presenter: NextDaysPresenter = NextDaysPresenterImplementation(view: viewController, router: router)
+        let presenter: NextDaysPresenter = NextDaysPresenterImplementation(view: viewController, router: router, model: model)
         
         viewController.presenter = presenter
     }
