@@ -43,10 +43,10 @@ class NextDaysTableViewCell: UITableViewCell {
         dateLabel.text = (model.forecastModel.date ?? Date()).convertDate(with: "EEEE, d MMM", timeZone: model.timezone)
         maxTemperatureLabel.text = "\(Int(model.forecastModel.temperature?.max?.rounded(.toNearestOrEven) ?? 0))º\(temperatureMetric)"
         minTemperatureLabel.text = "\(Int(model.forecastModel.temperature?.min?.rounded(.toNearestOrEven) ?? 0))º\(temperatureMetric)"
-        humidityLabel.text = "\(model.forecastModel.humidity ?? 0)%"
-        uvIndexLabel.text = "\(model.forecastModel.uvi ?? 0)"
+        humidityLabel.text = "\(Int(model.forecastModel.humidity ?? 0))%"
+        uvIndexLabel.text = "\(Int(model.forecastModel.uvi ?? 0))"
         windLabel.text = "\((model.forecastModel.windDegrees ?? 0).windDirectionFromDegrees()) \(model.forecastModel.windSpeed ?? 0) m/s"
-        pressureLabel.text = "\(model.forecastModel.pressure ?? 0) hPa"
+        pressureLabel.text = "\(Int(model.forecastModel.pressure ?? 0)) hPa"
     }
     
     

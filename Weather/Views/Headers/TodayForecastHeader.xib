@@ -28,11 +28,14 @@
             <rect key="frame" x="0.0" y="0.0" width="625" height="404"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="1bp-Ke-jIF">
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="1bp-Ke-jIF">
                     <rect key="frame" x="10" y="352" width="605" height="30"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZmS-Zk-SQg">
-                            <rect key="frame" x="0.0" y="0.0" width="201.66666666666666" height="30"/>
+                            <rect key="frame" x="0.0" y="0.0" width="60" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="60" id="q7B-hP-5MQ"/>
+                            </constraints>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
                             <state key="normal" title="Today">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -42,7 +45,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y0u-BJ-Uds">
-                            <rect key="frame" x="201.66666666666669" y="0.0" width="201.66666666666669" height="30"/>
+                            <rect key="frame" x="90" y="0.0" width="159" height="30"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
                             <state key="normal" title="Tomorrow">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -51,12 +54,12 @@
                                 <action selector="changeDayBtnPressed:" destination="-1" eventType="touchUpInside" id="nDH-NY-s1Q"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FxV-rv-lzi">
-                            <rect key="frame" x="403.33333333333331" y="0.0" width="201.66666666666669" height="30"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FxV-rv-lzi">
+                            <rect key="frame" x="279" y="0.0" width="326" height="30"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <inset key="titleEdgeInsets" minX="-30" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="-210" maxY="0.0"/>
+                            <inset key="titleEdgeInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="imageEdgeInsets" minX="120" minY="0.0" maxX="0.0" maxY="-3"/>
                             <state key="normal" title="Next 7 Days" image="chevron.right.circle.fill" catalog="system">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
@@ -73,7 +76,7 @@
                     <rect key="frame" x="0.0" y="382" width="625" height="12"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5ZB-Ds-oeN">
-                            <rect key="frame" x="106" y="1" width="10" height="10"/>
+                            <rect key="frame" x="35" y="1" width="10" height="10"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="10" id="h8s-1j-sUb"/>
@@ -86,7 +89,7 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Blp-Pl-469">
-                            <rect key="frame" x="307.66666666666669" y="1" width="10" height="10"/>
+                            <rect key="frame" x="174.33333333333334" y="1" width="10" height="10"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="10" id="bPx-3h-bme"/>
@@ -99,7 +102,7 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Her-KY-e31">
-                            <rect key="frame" x="509.33333333333326" y="1" width="10" height="10"/>
+                            <rect key="frame" x="447" y="1" width="10" height="10"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="10" id="eet-rO-YoM"/>
