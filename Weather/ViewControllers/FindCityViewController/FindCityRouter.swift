@@ -39,6 +39,7 @@ class FindCityRouterImplementation: FindCityRouter {
                 cityForecastVC.modalPresentationStyle = .fullScreen
                 self.viewController.present(cityForecastVC, animated: true, completion: nil)
             }else {
+                cityForecastVC.loadCurrentLocation = false
                 self.viewController.navigationController?.pushViewController(cityForecastVC, animated: true)
             }
         }

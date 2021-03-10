@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class CityForecastViewController: UIViewController {
     
@@ -21,6 +22,8 @@ class CityForecastViewController: UIViewController {
     
     var presenter: CityForecastPresenter!
     let configurator: CityForecastConfigurator = CityForecastConfiguratorImplementation()
+    var loadCurrentLocation: Bool = true
+    private let locationManager = CLLocationManager()
     
     //MARK: - Life cycles
     
@@ -29,12 +32,16 @@ class CityForecastViewController: UIViewController {
         setupGradientBgColor()
         configureNavBar()
         configureTableView()
+        configureLocationManager()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         presenter.viewWillAppear()
         changeAddViewHeight(isHidden: self.navigationController?.isNavigationBarHidden ?? true)
+        if self.navigationController?.isNavigationBarHidden == false && loadCurrentLocation {
+            validateAndRequesteLocation()
+        }
     }
     
     //MARK: - Helper
@@ -64,7 +71,6 @@ class CityForecastViewController: UIViewController {
         setupNavBarStyle()
     }
     
-    
     private func setupNavBarStyle() {
         navigationController?.navigationBar.barTintColor = .lightBlue
         navigationController?.navigationBar.shadowImage = UIImage()
@@ -87,7 +93,7 @@ class CityForecastViewController: UIViewController {
     }
     
     @objc private func currentLocationBtnPressed() {
-        
+        validateAndRequesteLocation()
     }
     
     private func setupMenuBtn() {
@@ -114,8 +120,37 @@ class CityForecastViewController: UIViewController {
         addView.isHidden = !isHidden
         addViewHeightConstraint.constant = isHidden ? 40 : 0
     }
-
-
+    
+    private func configureLocationManager() {
+        if self.navigationController?.isNavigationBarHidden == false && loadCurrentLocation {
+            locationManager.delegate = self
+            locationManager.requestWhenInUseAuthorization()
+        }
+    }
+    
+    private func validateAndRequesteLocation() {
+        let status = CLLocationManager.authorizationStatus()
+        switch status {
+        case .authorizedAlways, .authorizedWhenInUse:
+            if let location = locationManager.location {
+                presenter.loadCityName(by: location)
+                presenter.loadForecast(for: location.coordinate)
+            }
+        case .denied, .restricted:
+            showAlert(title: "Location access denied", message: "Please turn on a location in phone settings")
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+        @unknown default:
+            break
+        }
+    }
+    
+    private func showAlert(title: String?, message: String?) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
 }
 
 //MARK: - CityForecastView
@@ -127,8 +162,8 @@ extension CityForecastViewController: CityForecastView {
         cell.backgroundColor = .clear
     }
     
-    func configureHeader(model: ForecastsModel) {
-        headerView.configure(model: model)
+    func configureHeader(model: ForecastsModel, isToday: Bool) {
+        headerView.configure(model: model, isToday: isToday)
     }
     
     func reloadTableView() {
@@ -162,5 +197,15 @@ extension CityForecastViewController: UITableViewDelegate {
 extension CityForecastViewController: TodayForecastDelegate {
     func showNextDaysScreen() {
         presenter.router.showNextDaysScreen()
+    }
+    
+    func changeForecastModel(isToday: Bool) {
+        presenter.changeForecastModel(isToday: isToday)
+    }
+}
+
+extension CityForecastViewController: CLLocationManagerDelegate {    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        validateAndRequesteLocation()
     }
 }

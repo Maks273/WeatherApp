@@ -40,6 +40,10 @@ class ForecastsModel: Codable {
             hourly = try container.decode([ForecastModel].self, forKey: .hourly)
             lat = try? container.decodeIfPresent(Double.self, forKey: .lat)
             lon = try? container.decodeIfPresent(Double.self, forKey: .lon)
+            
+            if current?.temperature == nil {
+                current?.temperature = daily.first?.temperature
+            }
         }catch(let error) {
             NSLog("Decode error \(error.localizedDescription)")
         }

@@ -78,6 +78,10 @@ class ForecastModel: Codable {
             
             windDegrees = try? container.decode(Double.self, forKey: .windDegrees)
             
+            if currentTemperature == nil {
+                currentTemperature = temperature?.day
+            }
+        
         }catch(let error) {
             NSLog("Decode error \(error.localizedDescription)")
         }
