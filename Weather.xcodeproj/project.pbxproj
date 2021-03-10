@@ -23,6 +23,7 @@
 		2D680DDB25F023AD00ADE520 /* StoryboardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D680DDA25F023AD00ADE520 /* StoryboardService.swift */; };
 		2D680DDD25F0246C00ADE520 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D680DDC25F0246C00ADE520 /* UIViewControllerExtension.swift */; };
 		2D79DBCF25F28F5B002D1D33 /* GoogleAddressModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D79DBCE25F28F5B002D1D33 /* GoogleAddressModel.swift */; };
+		2D91FC1925F8CC2300E2FA6F /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D91FC1825F8CC2300E2FA6F /* Double.swift */; };
 		2D9BE25A25F0D48800924AB1 /* NextDaysTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9BE25825F0D48800924AB1 /* NextDaysTableViewCell.swift */; };
 		2D9BE25B25F0D48800924AB1 /* NextDaysTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D9BE25925F0D48800924AB1 /* NextDaysTableViewCell.xib */; };
 		2DA49FCE25EF7B2E00EBF2D4 /* CityForecastPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA49FCD25EF7B2E00EBF2D4 /* CityForecastPresenter.swift */; };
@@ -68,6 +69,7 @@
 		2D680DDA25F023AD00ADE520 /* StoryboardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardService.swift; sourceTree = "<group>"; };
 		2D680DDC25F0246C00ADE520 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		2D79DBCE25F28F5B002D1D33 /* GoogleAddressModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAddressModel.swift; sourceTree = "<group>"; };
+		2D91FC1825F8CC2300E2FA6F /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		2D9BE25825F0D48800924AB1 /* NextDaysTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextDaysTableViewCell.swift; sourceTree = "<group>"; };
 		2D9BE25925F0D48800924AB1 /* NextDaysTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NextDaysTableViewCell.xib; sourceTree = "<group>"; };
 		2DA49FCD25EF7B2E00EBF2D4 /* CityForecastPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityForecastPresenter.swift; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 				2DF3BFBE25EEC3FD000534E3 /* UIColorExtension.swift */,
 				2D680DDC25F0246C00ADE520 /* UIViewControllerExtension.swift */,
 				2D2C020925F6403600CE5F89 /* DateExtension.swift */,
+				2D91FC1825F8CC2300E2FA6F /* Double.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -490,6 +493,7 @@
 				2D40F40C25F3CDB70049C962 /* ApiService.swift in Sources */,
 				2DD5949225F4BA13002B373A /* ForecastsModel.swift in Sources */,
 				2DD5949825F4BA45002B373A /* FeelsLike.swift in Sources */,
+				2D91FC1925F8CC2300E2FA6F /* Double.swift in Sources */,
 				2DF3BFBF25EEC3FD000534E3 /* UIColorExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

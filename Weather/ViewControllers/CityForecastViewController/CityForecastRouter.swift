@@ -9,7 +9,7 @@
 import UIKit
 
 protocol CityForecastRouter {
-    func showNextDaysScreen()
+    func showNextDaysScreen(with model: ForecastsModel)
     func showFindCityScreen()
 }
 
@@ -27,9 +27,9 @@ class CityForecastRouterImplementation: CityForecastRouter {
     
     //MARK: - Helper
     
-    func showNextDaysScreen() {
+    func showNextDaysScreen(with model: ForecastsModel) {
         let nextDays = StoryboardService.main.viewController(viewControllerClass: NextDaysViewController.self)
-        nextDays.configurator.configure(nextDays)
+        nextDays.configurator.configure(nextDays, model: model)
         viewController.navigationController?.pushViewController(nextDays, animated: true)
     }
     

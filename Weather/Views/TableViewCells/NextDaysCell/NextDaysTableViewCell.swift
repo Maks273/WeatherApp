@@ -14,6 +14,15 @@ class NextDaysTableViewCell: UITableViewCell {
     
     @IBOutlet weak var stackViewHeight: NSLayoutConstraint!
     @IBOutlet weak var containerStackView: UIStackView!
+    @IBOutlet weak var iconImageView: UIImageView!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var maxTemperatureLabel: UILabel!
+    @IBOutlet weak var minTemperatureLabel: UILabel!
+    @IBOutlet weak var pressureLabel: UILabel!
+    @IBOutlet weak var windLabel: UILabel!
+    @IBOutlet weak var humidityLabel: UILabel!
+    @IBOutlet weak var uvIndexLabel: UILabel!
+    
     
     //MARK: - Override
     
@@ -29,6 +38,15 @@ class NextDaysTableViewCell: UITableViewCell {
     
     func configure(with model: NextDayCellModel) {
         animateContantStackView(isExpanded: model.isExpanded)
+        let temperatureMetric = UserDefaultsService.shared.getTemperatureMetric() == TemperatureMetrics.celsius.rawValue ? "C" : "F"
+        iconImageView.image = UIImage(named: model.forecastModel.weather.first?.iconName ?? "")
+        dateLabel.text = (model.forecastModel.date ?? Date()).convertDate(with: "EEEE, d MMM", timeZone: model.timezone)
+        maxTemperatureLabel.text = "\(Int(model.forecastModel.temperature?.max?.rounded(.toNearestOrEven) ?? 0))º\(temperatureMetric)"
+        minTemperatureLabel.text = "\(Int(model.forecastModel.temperature?.min?.rounded(.toNearestOrEven) ?? 0))º\(temperatureMetric)"
+        humidityLabel.text = "\(model.forecastModel.humidity ?? 0)%"
+        uvIndexLabel.text = "\(model.forecastModel.uvi ?? 0)"
+        windLabel.text = "\((model.forecastModel.windDegrees ?? 0).windDirectionFromDegrees()) \(model.forecastModel.windSpeed ?? 0) m/s"
+        pressureLabel.text = "\(model.forecastModel.pressure ?? 0) hPa"
     }
     
     

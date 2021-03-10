@@ -196,7 +196,9 @@ extension CityForecastViewController: UITableViewDelegate {
 
 extension CityForecastViewController: TodayForecastDelegate {
     func showNextDaysScreen() {
-        presenter.router.showNextDaysScreen()
+        if let model = presenter.getForecastsModel() {
+            presenter.router.showNextDaysScreen(with: model)
+        }
     }
     
     func changeForecastModel(isToday: Bool) {
