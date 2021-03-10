@@ -238,6 +238,12 @@ extension FindCityViewController: FindCityView {
     func reloadCells(at indexPaths: [IndexPath]) {
         tableView.reloadRows(at: indexPaths, with: .automatic)
     }
+    
+    func enableCell(at indexPath: IndexPath) {
+        if indexPath.row < tableView.visibleCells.count {
+            tableView.visibleCells[indexPath.row].isUserInteractionEnabled = true
+        }
+    }
 }
 
 extension FindCityViewController: UITextFieldDelegate {
@@ -290,6 +296,7 @@ extension FindCityViewController: UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "findCityCell", for: indexPath) as! FindCityTableViewCell
         cell.delegate = self
+        cell.isUserInteractionEnabled = false
         if let model = presenter.cityModel(for: indexPath.row) {
             cell.configure(model: model, indexPath: indexPath)
         }

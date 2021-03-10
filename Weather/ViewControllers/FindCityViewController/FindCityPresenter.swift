@@ -21,6 +21,7 @@ protocol FindCityView: class {
     func reloadCityTableView()
     func removeRows(at indexPaths: [IndexPath])
     func reloadCells(at indexPaths: [IndexPath])
+    func enableCell(at indexPath: IndexPath)
 }
 
 protocol FindCityPresenter {
@@ -154,7 +155,7 @@ class FindCityPresenterImplementation: FindCityPresenter {
     }
     
     func didSelectCityCell(at indexPath: IndexPath) {
-        if indexPath.row < forecastDataSource.count {
+        if indexPath.row < forecastDataSource.count, forecastDataSource[indexPath.row].current != nil {
             router.showCityForecastScreen(with: forecastDataSource[indexPath.row], showAsModal: false)
         }
     }
@@ -208,6 +209,7 @@ class FindCityPresenterImplementation: FindCityPresenter {
             sSelf.forecastDataSource[index] = model
             DispatchQueue.main.async {
                 sSelf.view.reloadCells(at: [IndexPath(row: index, section: 0)])
+                sSelf.view.enableCell(at: IndexPath(row: index, section: 0))
             }
         }
     }
