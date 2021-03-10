@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -36,7 +35,7 @@
                                         <rect key="frame" x="5" y="5" width="30" height="30"/>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.50588235294117645" green="0.64100410305723854" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.50588235294117645" green="0.63921568627450975" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="dSm-tM-7sT" secondAttribute="bottom" constant="5" id="3iP-SU-Fsf"/>
                                     <constraint firstItem="dSm-tM-7sT" firstAttribute="leading" secondItem="HfU-IJ-64j" secondAttribute="leading" constant="5" id="4KM-sX-btD"/>
@@ -84,7 +83,6 @@
                     </view>
                 </subviews>
             </view>
-            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="znz-vo-wPs" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="OfV-64-qqZ"/>
@@ -92,6 +90,7 @@
                 <constraint firstAttribute="bottom" secondItem="znz-vo-wPs" secondAttribute="bottom" id="UkW-Q0-rRI"/>
                 <constraint firstItem="znz-vo-wPs" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Zck-Wf-y2Q"/>
             </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="83" height="138"/>
             <connections>
                 <outlet property="containerView" destination="znz-vo-wPs" id="h8h-hr-Y19"/>

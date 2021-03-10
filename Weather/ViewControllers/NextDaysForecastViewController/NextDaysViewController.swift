@@ -54,7 +54,7 @@ class NextDaysViewController: UIViewController {
     private func configureTitle() {
         title = presenter.title()
         let attributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont(name: "HelveticaNeue-Medium", size: 18)!,
+            .font: UIFont(name: "HelveticaNeue-Medium", size: 20)!,
             .foregroundColor: UIColor.white
         ]
         navigationController?.navigationBar.titleTextAttributes = attributes
