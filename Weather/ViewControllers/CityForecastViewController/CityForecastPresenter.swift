@@ -177,11 +177,11 @@ class CityForecastPresenterImplementation: CityForecastPresenter {
         conditionsDataSource = [
             [ConditionForecast(title: "SUNRICE", value: (forecastModel.sunrise ?? Date()).convertDate(with: "h:mm a", timeZone: timeZone)),
              ConditionForecast(title: "SUNSET", value: (forecastModel.sunset ?? Date()).convertDate(with: "h:mm a", timeZone: timeZone))],
-            [ConditionForecast(title: "HUMIDITY", value: "\(forecastModel.humidity ?? 0)%"),
-             ConditionForecast(title: "PRESSURE", value: "\(forecastModel.pressure ?? 0) hPa")],
+            [ConditionForecast(title: "HUMIDITY", value: "\(Int(forecastModel.humidity ?? 0))%"),
+             ConditionForecast(title: "PRESSURE", value: "\(Int(forecastModel.pressure ?? 0)) hPa")],
             [ConditionForecast(title: "FEELS LIKE", value: "\(Int(forecastModel.feelsLikeCurrent?.rounded(.toNearestOrEven) ?? 0))º"),
              ConditionForecast(title: "VISIBILITY", value: "\((forecastModel.visibility ?? 0)/1000) km")],
-            [ConditionForecast(title: "UV INDEX", value: "\(forecastModel.uvi ?? 0)"),
+            [ConditionForecast(title: "UV INDEX", value: "\(Int(forecastModel.uvi?.rounded(.toNearestOrEven) ?? 0))"),
              ConditionForecast(title: "WIND", value: "\((forecastModel.windDegrees ?? 0).windDirectionFromDegrees()) \(forecastModel.windSpeed ?? 0) m/s")]
         ]
         
@@ -239,7 +239,7 @@ extension CityForecastPresenterImplementation: HourlyForecastDelegate {
     func configureCell(_ collectionView: UICollectionView, at indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "hourlyCollectionCell", for: indexPath) as! HourlyForecastCollectionViewCell
         if let model = getHourlyModel(for: indexPath.item), let timeZone = self.model?.timezone {
-            cell.configure(model: model, timeZone: timeZone)
+            cell.configure(model: model, timeZone: timeZone, isFirst: indexPath.row == 0)
         }
         return cell
     }
