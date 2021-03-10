@@ -21,6 +21,7 @@ class FindCityViewController: UIViewController {
     private var autoCompleteTableView: UITableView!
     private var autoCompleteHeightConstraint: NSLayoutConstraint!
     private var timer: Timer?
+    private var textField: UITextField!
     
     //MARK: - Life cycles
 
@@ -47,6 +48,7 @@ class FindCityViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         self.view.layer.sublayers?.first?.frame = self.view.layer.bounds
+        textField.frame = CGRect(x: 0, y: 0, width: (navigationController?.navigationBar.frame.width ?? 0) - 24, height: 30)
     }
 
     
@@ -85,7 +87,8 @@ class FindCityViewController: UIViewController {
     private func setupChangeDegreesBtn() {
         let celsiusBtn = createDegreesBtn(title: "ºC", tag: 0, color: presenter.getTemperaturButtonColor(for: 0))
         let farengateBtn = createDegreesBtn(title: "ºF", tag: 1, color: presenter.getTemperaturButtonColor(for: 1))
-        navigationItem.rightBarButtonItems = [farengateBtn, celsiusBtn]
+        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        navigationItem.rightBarButtonItems = [farengateBtn, space, celsiusBtn]
     }
     
     private func createDegreesBtn(title: String, tag: Int, color: UIColor) -> UIBarButtonItem {
@@ -96,6 +99,7 @@ class FindCityViewController: UIViewController {
             .foregroundColor: color
         ]
         degressBtn.setTitleTextAttributes(attributes, for: .normal)
+        degressBtn.setTitleTextAttributes(attributes, for: .selected)
         
         return degressBtn
     }
@@ -117,15 +121,15 @@ class FindCityViewController: UIViewController {
     }
     
     private func setupSearchTextField() {
-        let textField = UITextField()
+        textField = UITextField()
         textField.backgroundColor = .white
         textField.clearButtonMode = .whileEditing
-        textField.placeholder = "City, zip code"
+        textField.placeholder = "City name"
         textField.layer.cornerRadius = 10
         textField.layer.masksToBounds = true
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: textField.frame.height))
         textField.leftViewMode = .always
-        textField.frame = CGRect(x: 12, y: 0, width: navigationController?.navigationBar.frame.width ?? 0 - 24, height: 30)
+        //textField.frame = CGRect(x: 12, y: 0, width: (navigationController?.navigationBar.frame.width ?? 0) - 24, height: 30)
         navigationItem.titleView = textField
         textField.delegate = self
     }
@@ -150,8 +154,8 @@ class FindCityViewController: UIViewController {
         
         self.view.addConstraints([
             autoCompleteTableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-            autoCompleteTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
-            autoCompleteTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12)
+            autoCompleteTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 12),
+            autoCompleteTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -12)
         ])
         
         configureAutoCompleteTableView()

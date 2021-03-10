@@ -17,6 +17,7 @@ class CityForecastViewController: UIViewController {
     @IBOutlet weak var headerView: TodayForecastHeader!
     @IBOutlet weak var addViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var addView: UIView!
+    @IBOutlet weak var addBtn: UIButton!
     
     //MARK: - Variables
     
@@ -168,6 +169,10 @@ extension CityForecastViewController: CityForecastView {
     
     func reloadTableView() {
         tableView.reloadData()
+    }
+    
+    func hideAddBtn(isHidden: Bool) {
+        addBtn.isHidden = isHidden
     }
 }
 

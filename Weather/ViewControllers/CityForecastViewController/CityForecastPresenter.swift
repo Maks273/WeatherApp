@@ -14,6 +14,7 @@ protocol CityForecastView: class {
     func configureCellStyle(for cell: UITableViewCell, hideSeparator: Bool)
     func configureHeader(model: ForecastsModel, isToday: Bool)
     func reloadTableView()
+    func hideAddBtn(isHidden: Bool)
 }
 
 protocol CityForecastPresenter {
@@ -66,6 +67,7 @@ class CityForecastPresenterImplementation: CityForecastPresenter {
     
     func viewWillAppear() {
         fillViews()
+        changeAddBtnVisibility()
     }
     
     func numberOfRows() -> Int {
@@ -225,6 +227,11 @@ class CityForecastPresenterImplementation: CityForecastPresenter {
             }
         }
         return nil
+    }
+    
+    private func changeAddBtnVisibility() {
+        let cityDataSource = UserDefaultsService.shared.loadCityDataSource()
+        view.hideAddBtn(isHidden: cityDataSource.contains(where: {$0.id == self.currentCityModel?.id}) )
     }
     
 }

@@ -37,7 +37,7 @@
                                                 <collectionView clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0nk-LA-Onx">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="151"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="UTl-Lt-7aw">
+                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="safeArea" id="UTl-Lt-7aw">
                                                         <size key="itemSize" width="128" height="128"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -145,6 +145,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Yuo-T3-daA"/>
                     <connections>
+                        <outlet property="addBtn" destination="p1c-qy-09f" id="N2y-Tn-HVV"/>
                         <outlet property="addView" destination="sYY-bo-WVJ" id="mhA-Ie-bcC"/>
                         <outlet property="addViewHeightConstraint" destination="7kR-tW-6nQ" id="5Sg-Gb-z4H"/>
                         <outlet property="headerView" destination="4Q2-19-RSb" id="aIW-ry-qNs"/>
@@ -207,8 +208,8 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mq5-HE-n4u">
                                                     <rect key="frame" x="12" y="0.0" width="390" height="68"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12:17 PM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XTK-Cz-mQA">
-                                                            <rect key="frame" x="0.0" y="10" width="64.5" height="18"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XTK-Cz-mQA">
+                                                            <rect key="frame" x="0.0" y="10" width="0.0" height="18"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="18" id="rts-pC-9lP"/>
                                                             </constraints>
@@ -216,14 +217,14 @@
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Uzhhorod" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zGv-aI-BLD">
-                                                            <rect key="frame" x="0.0" y="33" width="101" height="25"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zGv-aI-BLD">
+                                                            <rect key="frame" x="0.0" y="33" width="0.0" height="0.0"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="23"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="103 º" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNl-JO-Cow">
-                                                            <rect key="frame" x="296.5" y="10" width="93.5" height="48"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNl-JO-Cow">
+                                                            <rect key="frame" x="390" y="10" width="0.0" height="23"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="40"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -265,8 +266,8 @@
                         <constraints>
                             <constraint firstItem="MNM-xn-Imb" firstAttribute="top" secondItem="UhO-Cd-GgS" secondAttribute="top" id="5KY-Mo-5NB"/>
                             <constraint firstAttribute="bottom" secondItem="MNM-xn-Imb" secondAttribute="bottom" id="FsZ-Q6-olR"/>
-                            <constraint firstItem="MNM-xn-Imb" firstAttribute="trailing" secondItem="ZY7-Og-RoD" secondAttribute="trailing" id="QAf-SH-mBH"/>
-                            <constraint firstItem="MNM-xn-Imb" firstAttribute="leading" secondItem="ZY7-Og-RoD" secondAttribute="leading" id="Tug-1t-VX4"/>
+                            <constraint firstItem="MNM-xn-Imb" firstAttribute="trailing" secondItem="UhO-Cd-GgS" secondAttribute="trailing" id="QAf-SH-mBH"/>
+                            <constraint firstItem="MNM-xn-Imb" firstAttribute="leading" secondItem="UhO-Cd-GgS" secondAttribute="leading" id="Tug-1t-VX4"/>
                         </constraints>
                     </view>
                     <connections>
