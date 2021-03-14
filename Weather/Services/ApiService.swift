@@ -27,7 +27,8 @@ class ApiService {
     
     //MARK: - Helper
     
-    func getCurrentWeather(location: CLLocationCoordinate2D, completion: @escaping WeatherModelCompletion) {
+    func getCurrentWeather(location: CLLocationCoordinate2D, callback: @escaping WeatherModelCompletion) {
+        
         let params: Parameters = ["lat": location.latitude, "lon": location.longitude, "units": UserDefaultsService.shared.getTemperatureMetric() ?? "metric"]
         AF.request(baseURL.appending(apiKey), method: .get, parameters: params, encoding: URLEncoding(destination: .queryString)).validate().responseJSON { (response) in
             
@@ -36,13 +37,13 @@ class ApiService {
                 if let data = response.data {
                     do {
                         let model = try JSONDecoder().decode(ForecastsModel.self, from: data)
-                        completion(nil,model)
+                        callback(nil,model)
                     }catch(let error) {
-                        completion(error,nil)
+                        callback(error,nil)
                     }
                 }
             case .failure(let error):
-                completion(error,nil)
+                callback(error,nil)
             }
             
         }

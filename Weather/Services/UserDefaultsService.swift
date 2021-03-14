@@ -12,6 +12,7 @@ class UserDefaultsService {
     
     //MARK: - Variables
     
+    let userDefault = UserDefaults(suiteName: "group.com.paydich.Weather")
     static let shared = UserDefaultsService()
     
     //MARK: - Initalizer
@@ -21,15 +22,15 @@ class UserDefaultsService {
     //MARK: - Helper
     
     func saveTemperatureMetric(metric: String) {
-        UserDefaults.standard.set(metric, forKey: "temperaturMetric")
+        userDefault?.set(metric, forKey: "temperaturMetric")
     }
     
     func getTemperatureMetric() -> String? {
-        return UserDefaults.standard.string(forKey: "temperaturMetric")
+        return userDefault?.string(forKey: "temperaturMetric")
     }
     
     func loadCityDataSource() -> [CityModel] {
-        if let data = UserDefaults.standard.object(forKey: "cityItems") as? Data {
+        if let data = userDefault?.object(forKey: "cityItems") as? Data {
             if let decodeDataSource = try? JSONDecoder().decode([CityModel].self, from: data) {
                 return decodeDataSource
             }
@@ -39,7 +40,7 @@ class UserDefaultsService {
     
     func saveCityDataSource(_ dataSource: [CityModel]) {
          if let data = try? JSONEncoder().encode(dataSource) {
-             UserDefaults.standard.set(data, forKey: "cityItems")
+             userDefault?.set(data, forKey: "cityItems")
          }
      }
 }
