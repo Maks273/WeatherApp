@@ -12,7 +12,7 @@ class UserDefaultsService {
     
     //MARK: - Variables
     
-    let userDefault = UserDefaults(suiteName: "group.com.paydich.Weather")
+    let userDefault = UserDefaults(suiteName: "group.com.paydich.WeatherCheck")
     static let shared = UserDefaultsService()
     
     //MARK: - Initalizer
