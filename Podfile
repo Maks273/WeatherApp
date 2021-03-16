@@ -8,4 +8,8 @@ target 'Weather' do
   # Pods for Weather
     pod 'GooglePlaces'
     pod 'Alamofire' 
+
+	target "WeatherWidgetExtension" do
+   	 pod 'Alamofire'
+	end
 end
