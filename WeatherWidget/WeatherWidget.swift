@@ -26,7 +26,7 @@ struct WeatherTimeline: IntentTimelineProvider {
     
     func getSnapshot(for configuration: SelectCityIntent, in context: Context, completion: @escaping (WeatherEntry) -> Void) {
         locationManager.requestWhenInUseAuthorization()
-        if let latitude = CityParameter.defaultLocation.latitude?.doubleValue, let longitude = CityParameter.defaultLocation.longitude?.doubleValue  {
+        if let latitude = CityParameter.defaultLocation.latitude?.doubleValue, let longitude = CityParameter.defaultLocation.longitude?.doubleValue, latitude != 0, longitude != 0  {
             loadForecastModel(location: CLLocation(latitude: latitude, longitude: longitude)) { (model) in
                 if let model = model {
                     let entry = WeatherEntry(date: Date(), weatherInfo: model)
@@ -40,11 +40,11 @@ struct WeatherTimeline: IntentTimelineProvider {
         let currentDate = Date()
         let refreshDate = Calendar.current.date(byAdding: .minute, value: 15, to: currentDate)!
         
-        let latitude: Double?
-        let longitude: Double?
+        var latitude: Double? = nil
+        var longitude: Double? = nil
         
         if configuration.city?.latitude?.doubleValue == nil && configuration.city?.longitude?.doubleValue == nil {
-            latitude = CityParameter.defaultLocation.latitude?.doubleValue
+            latitude = CityParameter.defaultLocation.latitude?.doubleValue == 0 ? nil : CityParameter.defaultLocation.latitude?.doubleValue
             longitude = CityParameter.defaultLocation.longitude?.doubleValue
         }else {
             latitude = configuration.city?.latitude?.doubleValue
