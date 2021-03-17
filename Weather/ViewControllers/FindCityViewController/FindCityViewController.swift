@@ -124,14 +124,15 @@ class FindCityViewController: UIViewController {
         textField = UITextField()
         textField.backgroundColor = .white
         textField.clearButtonMode = .whileEditing
-        textField.placeholder = "City name"
         textField.layer.cornerRadius = 10
         textField.layer.masksToBounds = true
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: textField.frame.height))
         textField.leftViewMode = .always
-        //textField.frame = CGRect(x: 12, y: 0, width: (navigationController?.navigationBar.frame.width ?? 0) - 24, height: 30)
+        textField.attributedPlaceholder = NSAttributedString(string: "City name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.AppLightGray])
         navigationItem.titleView = textField
         textField.delegate = self
+        textField.textColor = .black
+        textField.tintColor = .AppLightGray
     }
     
     //MARK: AutoComplete table view
@@ -162,6 +163,7 @@ class FindCityViewController: UIViewController {
     }
     
     private func configureAutoCompleteTableView() {
+        autoCompleteTableView.backgroundColor = .white
         autoCompleteTableView.delegate = self
         autoCompleteTableView.dataSource = self
         autoCompleteTableView.separatorInset = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12)
@@ -291,6 +293,8 @@ extension FindCityViewController: UITableViewDataSource {
             cell.textLabel?.text = presenter.title(for: indexPath)
             cell.textLabel?.font = UIFont(name: "HelveticaNeue", size: 14)
             cell.textLabel?.textAlignment = .left
+            cell.textLabel?.textColor = .black
+            cell.backgroundColor = .white
             return cell
         }
         
