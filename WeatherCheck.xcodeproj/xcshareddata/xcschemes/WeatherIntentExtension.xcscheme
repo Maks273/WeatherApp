@@ -15,10 +15,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2D4FDE4C25FCFF20005C075C"
-               BuildableName = "WeatherWidgetExtension.appex"
-               BlueprintName = "WeatherWidgetExtension"
-               ReferencedContainer = "container:Weather.xcodeproj">
+               BlueprintIdentifier = "2D672E8025FE0BC500CCD643"
+               BuildableName = "WeatherCheckIntentExtension.appex"
+               BlueprintName = "WeatherCheckIntentExtension"
+               ReferencedContainer = "container:WeatherCheck.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -30,9 +30,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2DC13DF125E84A2200B9C44C"
-               BuildableName = "Weather.app"
-               BlueprintName = "Weather"
-               ReferencedContainer = "container:Weather.xcodeproj">
+               BuildableName = "WeatherCheck.app"
+               BlueprintName = "WeatherCheck"
+               ReferencedContainer = "container:WeatherCheck.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -58,42 +58,19 @@
       allowLocationSimulation = "YES"
       launchAutomaticallySubstyle = "2">
       <RemoteRunnable
-         runnableDebuggingMode = "2"
-         BundleIdentifier = "com.apple.springboard">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2D4FDE4C25FCFF20005C075C"
-            BuildableName = "WeatherWidgetExtension.appex"
-            BlueprintName = "WeatherWidgetExtension"
-            ReferencedContainer = "container:Weather.xcodeproj">
-         </BuildableReference>
+         runnableDebuggingMode = "1"
+         BundleIdentifier = "com.paydich.Weather"
+         RemotePath = "/Users/maks/Library/Developer/CoreSimulator/Devices/B3BCB314-844C-43B2-B74D-33C642FF59D2/data/Containers/Bundle/Application/8427B36E-26D6-4F38-A0F5-5938C0A6873D/Weather.app">
       </RemoteRunnable>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2DC13DF125E84A2200B9C44C"
-            BuildableName = "Weather.app"
-            BlueprintName = "Weather"
-            ReferencedContainer = "container:Weather.xcodeproj">
+            BuildableName = "WeatherCheck.app"
+            BlueprintName = "WeatherCheck"
+            ReferencedContainer = "container:WeatherCheck.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "_XCWidgetKind"
-            value = ""
-            isEnabled = "NO">
-         </EnvironmentVariable>
-         <EnvironmentVariable
-            key = "_XCWidgetDefaultView"
-            value = "timeline"
-            isEnabled = "NO">
-         </EnvironmentVariable>
-         <EnvironmentVariable
-            key = "_XCWidgetFamily"
-            value = "medium"
-            isEnabled = "NO">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -107,9 +84,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2DC13DF125E84A2200B9C44C"
-            BuildableName = "Weather.app"
-            BlueprintName = "Weather"
-            ReferencedContainer = "container:Weather.xcodeproj">
+            BuildableName = "WeatherCheck.app"
+            BlueprintName = "WeatherCheck"
+            ReferencedContainer = "container:WeatherCheck.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

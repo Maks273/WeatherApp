@@ -133,7 +133,7 @@ class FindCityPresenterImplementation: FindCityPresenter {
     
     func getTemperaturButtonColor(for tag: Int) -> UIColor {
         return UserDefaultsService.shared.getTemperatureMetric() == TemperatureMetrics.celsius.rawValue && tag == 0 ||
-            UserDefaultsService.shared.getTemperatureMetric() == TemperatureMetrics.fahrenheit.rawValue && tag == 1 ? .white : .systemGray5
+            UserDefaultsService.shared.getTemperatureMetric() == TemperatureMetrics.fahrenheit.rawValue && tag == 1 ? .white : .AppLightGray
     }
     
     func cityModel(for index: Int) -> CityModel? {
